@@ -1,11 +1,9 @@
-import logo from "./images/thrift-e-logo.svg";
+import LoginLogo from "./components/LoginLogo";
 
 function App() {
   return (
     <div>
-      <div id="login-logo-holder">
-        <img className="logo" alt="thrift-e-logo" src={logo} />
-      </div>
+      <LoginLogo />
     </div>
   );
 }
