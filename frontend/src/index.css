@@ -15,6 +15,10 @@ body {
   text-shadow: 2px 2px 2px black;
 }
 
+.form-control {
+  max-width: 300px;
+}
+
 #login-logo-holder {
   display: flex;
   justify-content: center;
