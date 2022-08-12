@@ -7,7 +7,20 @@ body {
   height: 250px;
 }
 
+.page-heading {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+}
+
 #login-logo-holder {
+  display: flex;
+  justify-content: center;
+}
+
+#login-header-holder {
   display: flex;
   justify-content: center;
 }
