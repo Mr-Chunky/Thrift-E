@@ -2,7 +2,9 @@ function UsernameInputField() {
   return (
     <form>
       <div className="form-group">
-        <label for="login-username-input">Username</label>
+        <label id="login-username-label" for="login-username-input">
+          Username
+        </label>
         <input
           type="text"
           className="form-control"

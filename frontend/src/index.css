@@ -15,8 +15,15 @@ body {
   text-shadow: 2px 2px 2px black;
 }
 
+.form-group {
+  display: block;
+  width: 100%;
+  margin: 0 30%;
+}
+
 .form-control {
-  max-width: 300px;
+  max-width: 40%;
+  min-width: 30%;
 }
 
 #login-logo-holder {
@@ -27,4 +34,10 @@ body {
 #login-header-holder {
   display: flex;
   justify-content: center;
+}
+
+#login-username-label {
+  color: white;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 2px 2px black;
 }
