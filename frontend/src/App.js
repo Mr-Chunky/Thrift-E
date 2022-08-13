@@ -1,13 +1,13 @@
 import LoginLogo from "./components/LoginLogo";
 import LoginHeader from "./components/LoginHeader";
-import UsernameInputField from "./components/UsernameInputField";
+import LoginInputFields from "./components/LoginInputFields";
 
 function App() {
   return (
     <div>
       <LoginLogo />
       <LoginHeader />
-      <UsernameInputField />
+      <LoginInputFields />
     </div>
   );
 }
