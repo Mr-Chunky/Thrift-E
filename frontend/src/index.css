@@ -18,13 +18,13 @@ body {
 .form-group {
   display: block;
   width: 100%;
-  margin: 0 30%;
+  margin: 0 32%;
   padding: 0.7em;
 }
 
 .form-control {
-  max-width: 40%;
-  min-width: 30%;
+  max-width: 35%;
+  min-width: 20%;
   outline-style: groove;
   outline-color: black;
 }
