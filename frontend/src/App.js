@@ -1,6 +1,7 @@
 import LoginLogo from "./components/LoginLogo";
 import LoginHeader from "./components/LoginHeader";
 import LoginInputFields from "./components/LoginInputFields";
+import LoginNewAccountLink from "./components/LoginNewAccountLink";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <LoginLogo />
       <LoginHeader />
       <LoginInputFields />
+      <LoginNewAccountLink />
     </div>
   );
 }

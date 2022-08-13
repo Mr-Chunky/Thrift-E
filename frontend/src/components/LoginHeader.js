@@ -1,6 +1,6 @@
 function LoginHeader() {
   return (
-    <div id="login-header-holder">
+    <div className="center-content-holder">
       <h1 className="page-heading">Account Login</h1>
     </div>
   );

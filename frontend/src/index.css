@@ -19,7 +19,7 @@ body {
   display: block;
   width: 100%;
   margin: 0 30%;
-  padding: 0.3em;
+  padding: 0.7em;
 }
 
 .form-control {
@@ -27,18 +27,21 @@ body {
   min-width: 30%;
 }
 
-#login-logo-holder {
+.center-content-holder {
   display: flex;
   justify-content: center;
-}
-
-#login-header-holder {
-  display: flex;
-  justify-content: center;
+  color: white;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 1px 1px 1px black;
 }
 
 .login-input-label {
   color: white;
   font-family: Georgia, "Times New Roman", Times, serif;
   text-shadow: 2px 2px 2px black;
+}
+
+#create-account-link {
+  color: #b96b0b;
+  text-decoration: underline;
 }
