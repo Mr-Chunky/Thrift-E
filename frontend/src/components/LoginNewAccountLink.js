@@ -1,18 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function LoginNewAccountLink() {
-  const createAccount = useNavigate();
-
-  function NewAccount() {
-    createAccount("/create-account", { replace: true });
-  }
-
   return (
     <div className="center-content-holder">
       Are you a new user?&nbsp;&nbsp;
-      <span id="create-account-link" onClick={NewAccount}>
+      <Link id="create-account-link" to="/create-account">
         Create an account for free!
-      </span>
+      </Link>
     </div>
   );
 }
