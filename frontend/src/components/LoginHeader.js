@@ -1,7 +1,7 @@
 function LoginHeader() {
   return (
     <div className="center-content-holder">
-      <h1 className="page-heading">Account Login</h1>
+      <h1>Account Login</h1>
     </div>
   );
 }
