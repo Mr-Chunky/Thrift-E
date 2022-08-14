@@ -37,26 +37,3 @@ h1 {
   text-shadow: 1px 1px 1px black;
   margin-top: 1em;
 }
-
-.login-input-label {
-  color: white;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  text-shadow: 2px 2px 2px black;
-  margin-bottom: 0.3em;
-}
-
-#button-login {
-  background-color: #b96b0b;
-  color: black;
-  padding-inline-start: 1.5em;
-  padding-inline-end: 1.5em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  outline-style: groove;
-  outline-color: black;
-}
-
-#create-account-link {
-  color: #b96b0b;
-  text-decoration: underline;
-}

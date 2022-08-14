@@ -1,8 +1,13 @@
+import modifiers from "./Login.module.css";
+
 function LoginInputFields() {
   return (
     <form>
       <div className="form-group">
-        <label className="login-input-label" for="login-username-input">
+        <label
+          className={modifiers.login_input_label}
+          for="login-username-input"
+        >
           Username
         </label>
         <input
@@ -13,7 +18,10 @@ function LoginInputFields() {
         ></input>
       </div>
       <div className="form-group">
-        <label className="login-input-label" for="login-password-input">
+        <label
+          className={modifiers.login_input_label}
+          for="login-password-input"
+        >
           Password
         </label>
         <input

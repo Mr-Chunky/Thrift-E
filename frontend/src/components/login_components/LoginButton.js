@@ -1,10 +1,12 @@
+import modifiers from "./Login.module.css";
+
 function LoginButton() {
   return (
     <div className="center-content-holder">
       <button
         className="btn btn-outline-secondary"
         type="button"
-        id="button-login"
+        id={modifiers.btn_login}
       >
         Login
       </button>
