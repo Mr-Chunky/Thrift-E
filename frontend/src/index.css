@@ -17,14 +17,15 @@ h1 {
 
 .form-group {
   display: block;
-  width: 100%;
-  margin: 0 32%;
-  padding: 0.7em;
+  margin: 0 auto;
+  max-width: 30%;
+}
+
+.col {
+  padding-bottom: 1em;
 }
 
 .form-control {
-  max-width: 35%;
-  min-width: 20%;
   outline-style: groove;
   outline-color: black;
 }
@@ -36,4 +37,11 @@ h1 {
   font-family: Georgia, "Times New Roman", Times, serif;
   text-shadow: 1px 1px 1px black;
   margin-top: 1em;
+}
+
+.user-input-label {
+  color: white;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 2px 2px black;
+  margin-bottom: 0.3em;
 }
