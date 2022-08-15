@@ -2,7 +2,7 @@ import modifiers from "./Login.module.css";
 
 function LoginButton() {
   return (
-    <div className="center-content-holder">
+    <div className="center-button-bar-holder">
       <button
         className="btn btn-outline-secondary"
         type="button"

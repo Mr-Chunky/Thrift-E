@@ -1,6 +1,7 @@
 import CreateAccountLogo from "../components/create_account_components/CreateAccountLogo";
 import CreateAccountHeader from "../components/create_account_components/CreateAccountHeader";
 import CreateAccountInputFields from "../components/create_account_components/CreateAccountInputFields";
+import CreateAccountButtonBar from "../components/create_account_components/CreateAccountButtonBar";
 
 function CreateAccountPage() {
   return (
@@ -8,6 +9,7 @@ function CreateAccountPage() {
       <CreateAccountLogo />
       <CreateAccountHeader />
       <CreateAccountInputFields />
+      <CreateAccountButtonBar />
     </div>
   );
 }
