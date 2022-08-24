@@ -22,3 +22,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# containerization
+/*/docker-compose.yml
+/*/*/docker-compose.yml
+
+# generated
+/.vs
+
+# backend code
+/backend
