@@ -1,16 +1,16 @@
 import CreateAccountLogo from "../components/create_account_components/CreateAccountLogo";
 import CreateAccountHeader from "../components/create_account_components/CreateAccountHeader";
 import CreateAccountForm from "../components/create_account_components/CreateAccountForm";
-import BackgroundCard from "../components/ui/BackgroundCard";
+import UserInputCard from "../components/ui/UserInputCard";
 
 function CreateAccountPage() {
   return (
     <div>
-      <BackgroundCard>
+      <UserInputCard>
         <CreateAccountLogo />
         <CreateAccountHeader />
         <CreateAccountForm />
-      </BackgroundCard>
+      </UserInputCard>
     </div>
   );
 }

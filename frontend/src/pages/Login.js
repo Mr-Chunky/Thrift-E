@@ -1,16 +1,16 @@
 import LoginLogo from "../components/login_components/LoginLogo";
 import LoginHeader from "../components/login_components/LoginHeader";
 import LoginInputForm from "../components/login_components/LoginInputForm";
-import BackgroundCard from "../components/ui/BackgroundCard";
+import UserInputCard from "../components/ui/UserInputCard";
 
 function LoginPage() {
   return (
     <div>
-      <BackgroundCard>
+      <UserInputCard>
         <LoginLogo />
         <LoginHeader />
         <LoginInputForm />
-      </BackgroundCard>
+      </UserInputCard>
     </div>
   );
 }
