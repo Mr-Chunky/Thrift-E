@@ -1,8 +1,6 @@
 import LoginLogo from "../components/login_components/LoginLogo";
 import LoginHeader from "../components/login_components/LoginHeader";
-import LoginInputFields from "../components/login_components/LoginInputFields";
-import LoginNewAccountLink from "../components/login_components/LoginNewAccountLink";
-import LoginButton from "../components/login_components/LoginButton";
+import LoginInputForm from "../components/login_components/LoginInputForm";
 import BackgroundCard from "../components/ui/BackgroundCard";
 
 function LoginPage() {
@@ -11,9 +9,7 @@ function LoginPage() {
       <BackgroundCard>
         <LoginLogo />
         <LoginHeader />
-        <LoginInputFields />
-        <LoginNewAccountLink />
-        <LoginButton />
+        <LoginInputForm />
       </BackgroundCard>
     </div>
   );
