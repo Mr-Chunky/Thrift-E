@@ -23,12 +23,18 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# containerization
+# containerization and orchestration
+/*/Dockerfile
+/*/.dockerignore
 /*/docker-compose.yml
 /*/*/docker-compose.yml
+/*/K8S
 
 # generated
-/.vs
+.vs
 
 # backend code
 /backend
+
+# recursive ignore
+.gitignore

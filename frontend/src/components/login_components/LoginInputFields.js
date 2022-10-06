@@ -3,7 +3,7 @@ function LoginInputFields() {
     <form>
       <div className="form-group">
         <div className="col">
-          <label className="user-input-label" for="login-username-input">
+          <label className="user-input-label" htmlFor="login-username-input">
             Username
           </label>
           <input
@@ -14,7 +14,7 @@ function LoginInputFields() {
           ></input>
         </div>
         <div className="col">
-          <label className="user-input-label" for="login-password-input">
+          <label className="user-input-label" htmlFor="login-password-input">
             Password
           </label>
           <input
