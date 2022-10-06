@@ -1,0 +1,11 @@
+.backgroundCard {
+  border-radius: 2em;
+  background-color: #7e7f80;
+  box-shadow: 0.15em 0.15em black;
+  display: block;
+  margin: 0 auto;
+  max-width: 63%;
+  min-width: 60%;
+  padding: 1.5em;
+  margin-top: 5%;
+}

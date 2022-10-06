@@ -15,19 +15,19 @@ h1 {
   text-shadow: 2px 2px 2px black;
 }
 
-.form-group {
-  display: block;
-  margin: 0 auto;
-  max-width: 30%;
-}
-
 .col {
   padding-bottom: 1em;
+  max-width: 50%;
+  min-width: 35%;
+  display: block;
+  margin: 0 auto;
 }
 
 .form-control {
   outline-style: groove;
   outline-color: black;
+  display: block;
+  margin: 0 auto;
 }
 
 .center-content-holder {

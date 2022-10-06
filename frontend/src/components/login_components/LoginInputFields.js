@@ -11,6 +11,7 @@ function LoginInputFields() {
             className="form-control"
             id="login-username-input"
             placeholder="Enter Username"
+            required
           ></input>
         </div>
         <div className="col">
@@ -22,6 +23,7 @@ function LoginInputFields() {
             className="form-control"
             id="login-password-input"
             placeholder="Enter Password"
+            required
           ></input>
         </div>
       </div>
