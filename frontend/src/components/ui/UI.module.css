@@ -18,13 +18,13 @@
 
 .logoSmall {
   width: 5em;
-  height: 5em;
-  clip-path: inset(25px 25px 25px 25px);
+  height: 4em;
+  clip-path: inset(19px 24px 19px 27px);
   transform: scale(250%);
 }
 
 .navButtons {
-  font-size: 1.7em;
+  font-size: 1.6em;
   font-weight: 700;
   border-radius: 1em;
   text-transform: uppercase;
@@ -51,5 +51,5 @@
 #navBarButtonHolder {
   display: flex;
   margin-left: auto;
-  margin-right: 0;
+  margin-right: 2.5em;
 }
