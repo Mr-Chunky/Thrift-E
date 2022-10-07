@@ -32,28 +32,28 @@ function CreateAccountForm(props) {
       banStatus: 0,
     };
 
+    let response;
+
     // POST a new account via HTTP
     try {
-      const response = await fetch("https://localhost:7076/api/users", {
+      response = fetch("https://localhost:7076/api/users", {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
           "Content-Type": "application/json",
         },
-      }).then(() => {
+      }).then((response) => {
         navigate("/", { replace: true });
+        if (!response.ok) {
+          console.log(response);
+          throw new Error(`Error! Current Status: ${response.status}`);
+        } else if (response.ok) {
+          console.log(response);
+          alert("Account created successfully!");
+        }
       });
-      console.log("HTTP Status Code: ", response.status);
 
-      if (!response.ok) {
-        console.log(response);
-        throw new Error(`Error! Current Status: ${response.status}`);
-      } else if (response.ok) {
-        alert("Account created successfully!");
-      }
-
-      const result = await response.json();
-      return result;
+      return response;
     } catch (err) {
       console.log(err);
     }
