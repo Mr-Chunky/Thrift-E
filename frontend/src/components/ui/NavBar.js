@@ -9,16 +9,43 @@ function NavBar() {
     navigate("/statistics", { replace: true });
   };
 
+  const handleUserSettingsNavigate = () => {
+    navigate("/user-settings", { replace: true });
+  };
+
+  const handleSearchNavigate = () => {
+    navigate("/search", { replace: true });
+  };
+
   return (
     <div className="thrift-e-navbar">
       <img className={modifiers.logoSmall} alt="thrift-e-logo" src={logo} />
-      <button
-        className={modifiers.statsNavButton}
-        type="button"
-        onClick={handleStatsNavigate}
-      >
-        Statistics
-      </button>
+      <div id={modifiers.navBarButtonHolder}>
+        <button
+          className={modifiers.navButtons}
+          id={modifiers.searchNavButton}
+          type="button"
+          onClick={handleSearchNavigate}
+        >
+          Search Games
+        </button>
+        <button
+          className={modifiers.navButtons}
+          id={modifiers.statsNavButton}
+          type="button"
+          onClick={handleStatsNavigate}
+        >
+          Statistics
+        </button>
+        <button
+          className={modifiers.navButtons}
+          id={modifiers.userSettingsNavButton}
+          type="button"
+          onClick={handleUserSettingsNavigate}
+        >
+          Settings
+        </button>
+      </div>
     </div>
   );
 }

@@ -54,4 +54,9 @@ h1 {
 
 .thrift-e-navbar {
   display: flex;
+  padding: 1%;
+  background-color: #7e7f80;
+  border-radius: 2em;
+  margin-bottom: 1%;
+  max-height: 6em;
 }

@@ -1,4 +1,20 @@
 #searchGameInput {
-  margin-left: 1.5%;
-  margin-top: 1%;
+  margin: 0 auto;
+  max-width: 75%;
+  min-width: 25%;
+  display: flex;
+}
+
+#searchBarHolder {
+  display: flex;
+}
+
+#btnSearch {
+  border-radius: 1em;
+  width: 3em;
+  height: 3em;
+  margin-right: 2em;
+}
+
+#gameListHolder {
 }
