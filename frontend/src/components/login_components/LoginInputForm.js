@@ -19,8 +19,6 @@ function LoginInputForm() {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization:
-              "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkVfWGUzMkVMTGEzcnpXQ2kwdTR1QiJ9.eyJpc3MiOiJodHRwczovL2NodW5reS51cy5hdXRoMC5jb20vIiwic3ViIjoibkk0NlV6SmV6N0RBb3BsaFFKWllDcnA2R091YWY0a0xAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vdGhyaWZ0LWUiLCJpYXQiOjE2NjUxNDgyNjUsImV4cCI6MTY2NTIzNDY2NSwiYXpwIjoibkk0NlV6SmV6N0RBb3BsaFFKWllDcnA2R091YWY0a0wiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.ZVvcfxSzUP9wCNReGf32aCDVw_f_ec5TTSFPe5EuLNAivsEtqIReflPImRSX_cb8n-UypBvbgRpA2mvI6D-sdOXPhz6GrswTIqU58JpnjY6aQrD1ZWtg6igI1rqe6zFKFrhtWi-PVQ52ZmHLIWNxIm3XITtNpm_679U-4BpZZmsDeCAF32B00nmYfWkp0CuzUGR97ShdBKr_5wZUzWo_M3HrDare6qSM13IzeeSAhHl03mU9jvUizV4Ho8KWkeml4C-Sg9NmbNg6yIzCut-KQcZugdK6ezm9mGGWoC1r6VDP9ZcCnUteckIka_SN6q2sz38cFm8Jvg5trCb2ta2PDQ",
           },
         }
       );
