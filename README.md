@@ -4,6 +4,7 @@
 
 - React.js as frontend framework
 - Bootstrap 5 for styling
-- Docker for containerizing the entirety of the frontend
+- .NET Web API as backend framework
+- MySQL database instance to store generated user data
 
-_More to come!_
+Still a work in progress, but the general premise is there.
