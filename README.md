@@ -11,4 +11,4 @@ Still a work in progress, but the general premise is there.
 
 ## Demonstration Images
 ### Login Screen
-![thrift-e-login](https://github.com/Mr-Chunky/Thrift-E/images/Login Screen.PNG?raw=true)
+![thrift-e-login](https://github.com/Mr-Chunky/Thrift-E/blob/main/images/Login%20Screen.PNG)
