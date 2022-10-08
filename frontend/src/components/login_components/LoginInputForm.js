@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useContext, useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CurrentUserContext from "../../storage/current-user-context";
+import { sha256 } from "js-sha256";
 
 function LoginInputForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,11 +19,14 @@ function LoginInputForm() {
 
     const usernameInput = usernameInputRef.current.value;
     const passwordInput = passwordInputRef.current.value;
+    const passwordSalt = "tH1si54Sa1t";
+    const saltedPassword = `${passwordInput}:${passwordSalt}`;
+    const hashedPassword = sha256(saltedPassword);
     let userId;
 
     try {
       userId = await fetch(
-        `https://localhost:7076/api/users/${usernameInput}-${passwordInput}`
+        `https://localhost:7076/api/users/${usernameInput}-${hashedPassword}`
       ).then((response) => {
         console.log("HTTP Status Code: ", response.status);
         if (!response.ok) {

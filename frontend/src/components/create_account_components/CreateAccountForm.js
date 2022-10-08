@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import modifiers from "./CreateAccount.module.css";
 import { useRef } from "react";
+import { sha256 } from "js-sha256";
 
 function CreateAccountForm(props) {
   const navigate = useNavigate();
@@ -22,11 +23,15 @@ function CreateAccountForm(props) {
 
     const inputUserEmail = emailInputRef.current.value;
     const inputUsername = usernameInputRef.current.value;
+
+    const passwordSalt = "tH1si54Sa1t";
     const inputUserPassword = passwordInputRef.current.value;
+    const saltedPassword = `${inputUserPassword}:${passwordSalt}`;
+    const hashedPassword = sha256(saltedPassword);
 
     const user = {
       username: `${inputUsername}`,
-      password: `${inputUserPassword}`,
+      password: `${hashedPassword}`,
       email: `${inputUserEmail}`,
       userType: 0,
       banStatus: 0,
