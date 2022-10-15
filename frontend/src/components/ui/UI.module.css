@@ -14,6 +14,18 @@
 }
 
 .generalUICard {
+  border-radius: 2.5em;
+  background-color: #7e7f80;
+  box-shadow: 0.15em 0.15em black;
+  display: flex;
+  margin: 0 auto;
+  max-width: 90%;
+  min-width: 60%;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-top: 2em;
 }
 
 .logoSmall {
