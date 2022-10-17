@@ -60,3 +60,11 @@ h1 {
   margin-bottom: 1%;
   max-height: 6em;
 }
+
+.dropdown-menu {
+  background-color: white;
+}
+
+.dropdown {
+  margin-left: auto;
+}
