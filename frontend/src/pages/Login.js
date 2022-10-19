@@ -22,14 +22,17 @@ function LoginPage() {
         fetch(
           `https://localhost:7076/api/users/${loginData.username}-${loginData.password}`
         ).then(async (response) => {
-          console.log("HTTP Status Code: ", response.status);
+          console.log(">Login Page: HTTP Status Code - ", response.status);
           if (!response.ok) {
             console.log(response);
-            throw new Error(`Error! Current Status: ${response.status}`);
+            throw new Error(
+              `>Login Page: Error! Current Status - ${response.status}`
+            );
           } else if (response.ok) {
             let userId = await response.json();
-            console.log(`User ID Received: ${userId}`);
+            console.log(`>Login Page: User ID Received - ${userId}`);
             currentUserContext.getCurrentUser(userId);
+            window.localStorage.setItem("userId", userId);
             navigate("/search", { replace: true });
             return userId;
           }
