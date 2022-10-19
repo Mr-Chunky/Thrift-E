@@ -23,7 +23,7 @@ function LoginInputForm(props) {
       password: hashedPassword,
     };
 
-    props.onHandleLogin(userLoginData);
+    props.onGetLoginData(userLoginData);
   }
 
   // This returns the actual form elements that you see on screen
