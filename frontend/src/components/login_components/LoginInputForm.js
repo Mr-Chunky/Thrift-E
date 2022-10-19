@@ -12,6 +12,9 @@ function LoginInputForm(props) {
   async function loginHandler(event) {
     event.preventDefault();
 
+    // NOTE: TESTING CODE ONLY
+    // TODO: fetch random salt from DB to hash the password dynamically
+    // for checking purposes
     const usernameInput = usernameInputRef.current.value;
     const passwordInput = passwordInputRef.current.value;
     const passwordSalt = "tH1si54Sa1t";

@@ -24,6 +24,9 @@ function CreateAccountForm(props) {
     const inputUserEmail = emailInputRef.current.value;
     const inputUsername = usernameInputRef.current.value;
 
+    // NOTE: TESTING CODE ONLY
+    // TODO: Generate random salt & store salt in DB to
+    // fetch later and hash the password dynamically
     const passwordSalt = "tH1si54Sa1t";
     const inputUserPassword = passwordInputRef.current.value;
     const saltedPassword = `${inputUserPassword}:${passwordSalt}`;
