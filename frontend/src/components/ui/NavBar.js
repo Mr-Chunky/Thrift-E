@@ -6,7 +6,7 @@ function NavBar() {
   const navigate = useNavigate();
 
   const handleStatsNavigate = () => {
-    navigate("/statistics", { replace: true });
+    navigate("/statistics-simple", { replace: true });
   };
 
   const handleUserSettingsNavigate = () => {

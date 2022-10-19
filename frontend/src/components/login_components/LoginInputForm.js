@@ -1,14 +1,9 @@
 import modifiers from "./Login.module.css";
 import { Link } from "react-router-dom";
-import { useContext, useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import CurrentUserContext from "../../storage/current-user-context";
+import { useRef } from "react";
 import { sha256 } from "js-sha256";
 
-function LoginInputForm() {
-  const [isLoading, setIsLoading] = useState(false);
-  const currentUserContext = useContext(CurrentUserContext);
-  const navigate = useNavigate();
+function LoginInputForm(props) {
   const usernameInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -22,47 +17,13 @@ function LoginInputForm() {
     const passwordSalt = "tH1si54Sa1t";
     const saltedPassword = `${passwordInput}:${passwordSalt}`;
     const hashedPassword = sha256(saltedPassword);
-    let userId;
 
-    try {
-      userId = await fetch(
-        `https://localhost:7076/api/users/${usernameInput}-${hashedPassword}`
-      ).then((response) => {
-        console.log("HTTP Status Code: ", response.status);
-        if (!response.ok) {
-          console.log(response);
-          throw new Error(`Error! Current Status: ${response.status}`);
-        } else if (response.ok) {
-          return response.json();
-        }
-      });
-    } catch (err) {
-      console.log(err);
-    }
-    console.log(userId);
+    const userLoginData = {
+      username: usernameInput,
+      password: hashedPassword,
+    };
 
-    currentUserContext.getCurrentUser(userId);
-
-    if (
-      userId != null &&
-      (currentUserContext.userId !== undefined ||
-        currentUserContext.userId !== 0) &&
-      isLoading
-    ) {
-      setIsLoading(false);
-      console.log(`Current User ID: ${currentUserContext.userId}`);
-      navigate("/search");
-    } else if (
-      userId == null ||
-      ((currentUserContext.userId === undefined ||
-        currentUserContext.userId === 0) &&
-        !isLoading)
-    ) {
-      setIsLoading(true);
-      alert("No user exists with those credentials OR unhandled bug");
-    }
-
-    return;
+    props.onHandleLogin(userLoginData);
   }
 
   // This returns the actual form elements that you see on screen
