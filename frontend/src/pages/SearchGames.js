@@ -80,8 +80,13 @@ function SearchGamesPage() {
               );
             } else if (response.ok) {
               let gameInfo = await response.json();
-              let finalInfo = JSON.stringify(gameInfo);
-              console.log(
+              let finalInfo = JSON.stringify(
+                gameInfo[`${validGameId}`]["data"],
+                undefined,
+                2
+              );
+
+              console.warn(
                 `>Search Page: Game Info Received - \n------------\n${finalInfo}`
               );
             }
