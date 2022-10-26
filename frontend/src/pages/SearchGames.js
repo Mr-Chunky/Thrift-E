@@ -118,6 +118,8 @@ function SearchGamesPage() {
         <SearchGamesList
           steam_appid={gameData.steam_appid}
           name={gameData.name}
+          header_image={gameData.header_image}
+          short_description={gameData.short_description}
         />
       ) : null}
     </div>
