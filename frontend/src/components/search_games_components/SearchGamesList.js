@@ -1,17 +1,15 @@
 import modifiers from "./Search.module.css";
 import GeneralUICard from "../ui/GeneralUICard";
 
-function SearchGamesList() {
+function SearchGamesList(props) {
   return (
     <GeneralUICard>
-      <div id={modifiers.gameListHolder}>
+      <section id={modifiers.gameListHolder}>
+        <h1>Search Results</h1>
         <ul>
-          <li>Placeholder</li>
-          <li>Placeholder</li>
-          <li>Placeholder</li>
-          <li>Placeholder</li>
+          <li key={props.steam_appid}>{props.name}</li>
         </ul>
-      </div>
+      </section>
     </GeneralUICard>
   );
 }

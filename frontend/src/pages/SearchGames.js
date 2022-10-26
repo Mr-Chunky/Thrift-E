@@ -49,6 +49,9 @@ function SearchGamesPage() {
   const [userId, setUserId] = useState();
   const [searchTerm, setSearchTerm] = useState();
 
+  // JSON object to be passed to child component for dynamic content insertion
+  const [gameData, setGameData] = useState();
+
   const searchGameHandler = (userSearchTerm) => {
     setSearchTerm(userSearchTerm);
 
@@ -79,16 +82,21 @@ function SearchGamesPage() {
                 `>Search Page: Error! Current Status - ${response.status}`
               );
             } else if (response.ok) {
-              let gameInfo = await response.json();
+              let gameInfoObject = await response.json();
               let finalInfo = JSON.stringify(
-                gameInfo[`${validGameId}`]["data"],
+                gameInfoObject[`${validGameId}`]["data"],
                 undefined,
                 2
               );
+              let finalInfoObject = JSON.parse(finalInfo);
 
               console.warn(
                 `>Search Page: Game Info Received - \n------------\n${finalInfo}`
               );
+
+              console.log(`>Search Page: Game Name - ${finalInfoObject.name}`);
+
+              setGameData(finalInfoObject);
             }
           }
         );
@@ -106,7 +114,12 @@ function SearchGamesPage() {
     <div>
       <NavBar />
       <SearchGamesSearchBar onSearchGame={searchGameHandler} />
-      <SearchGamesList />
+      {gameData ? (
+        <SearchGamesList
+          steam_appid={gameData.steam_appid}
+          name={gameData.name}
+        />
+      ) : null}
     </div>
   );
 }
