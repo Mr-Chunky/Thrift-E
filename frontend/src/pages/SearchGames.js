@@ -120,6 +120,11 @@ function SearchGamesPage() {
           name={gameData.name}
           header_image={gameData.header_image}
           short_description={gameData.short_description}
+          genres={gameData.genres}
+          release_date={gameData.release_date}
+          developers={gameData.developers}
+          publishers={gameData.publishers}
+          price_overview={gameData.price_overview}
         />
       ) : null}
     </div>
