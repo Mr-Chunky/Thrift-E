@@ -49,8 +49,8 @@ function SearchGamesPage() {
   const [userId, setUserId] = useState();
   const [searchTerm, setSearchTerm] = useState();
 
-  // JSON object to be passed to child component for dynamic content insertion
-  const [gameData, setGameData] = useState();
+  // JSON objects to be passed to child component for dynamic content insertion
+  const [gameData, setGameData] = useState([]);
 
   const searchGameHandler = (userSearchTerm) => {
     setSearchTerm(userSearchTerm);
@@ -96,7 +96,7 @@ function SearchGamesPage() {
 
               console.log(`>Search Page: Game Name - ${finalInfoObject.name}`);
 
-              setGameData(finalInfoObject);
+              setGameData((tempArray) => [...tempArray, finalInfoObject]);
             }
           }
         );
@@ -114,19 +114,7 @@ function SearchGamesPage() {
     <div>
       <NavBar />
       <SearchGamesSearchBar onSearchGame={searchGameHandler} />
-      {gameData ? (
-        <SearchGamesList
-          steam_appid={gameData.steam_appid}
-          name={gameData.name}
-          header_image={gameData.header_image}
-          short_description={gameData.short_description}
-          genres={gameData.genres}
-          release_date={gameData.release_date}
-          developers={gameData.developers}
-          publishers={gameData.publishers}
-          price_overview={gameData.price_overview}
-        />
-      ) : null}
+      {gameData.length ? <SearchGamesList games={gameData} /> : null}
     </div>
   );
 }

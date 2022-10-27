@@ -25,14 +25,14 @@ props.price_overview -- An object containing details such as:
 
 function GameCard(props) {
   return (
-    <li key={props.steam_appid} className={modifiers.gameCard}>
+    <li className={modifiers.gameCard}>
       <div>
         <img src={props.header_image} alt="Represents the game" />
       </div>
       <div>
         <h3>{props.name}</h3>
         <p>{props.short_description}</p>
-        <span>{props.price_overview}</span>
+        <span>{props.price_overview.final_formatted}</span>
       </div>
       <div>
         <button>Add to Favourites!</button>
