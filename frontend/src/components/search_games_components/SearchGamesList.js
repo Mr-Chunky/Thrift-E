@@ -7,7 +7,12 @@ function SearchGamesList(props) {
     <GeneralUICard>
       <section id={modifiers.gameListHolder}>
         <h1>Search Results</h1>
-        <ul>
+        <ul
+          style={{
+            listStyle: "none",
+            display: "flex",
+          }}
+        >
           {props.games.map((game) => (
             <GameCard
               key={game.steam_appid}

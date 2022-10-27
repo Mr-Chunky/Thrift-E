@@ -27,15 +27,24 @@ function GameCard(props) {
   return (
     <li className={modifiers.gameCard}>
       <div>
-        <img src={props.header_image} alt="Represents the game" />
+        <img
+          id={modifiers.gameCardImage}
+          src={props.header_image}
+          alt="Represents the game"
+        />
       </div>
-      <div>
+      <div className={modifiers.cardContent}>
         <h3>{props.name}</h3>
         <p>{props.short_description}</p>
         <span>{props.price_overview.final_formatted}</span>
       </div>
-      <div>
-        <button>Add to Favourites!</button>
+      <div className="center-button-bar-holder">
+        <button
+          id={modifiers.favouritesButton}
+          className="btn btn-outline-secondary"
+        >
+          Add to Favourites!
+        </button>
       </div>
     </li>
   );
