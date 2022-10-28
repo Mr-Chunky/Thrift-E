@@ -96,6 +96,7 @@ function SearchGamesPage() {
 
               console.log(`>Search Page: Game Name - ${finalInfoObject.name}`);
 
+              setGameData([]);
               setGameData((tempArray) => [...tempArray, finalInfoObject]);
             }
           }
