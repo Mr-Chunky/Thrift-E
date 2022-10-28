@@ -101,3 +101,7 @@
   outline-style: groove;
   outline-color: black;
 }
+
+.gameAttributes {
+  font-size: smaller;
+}
