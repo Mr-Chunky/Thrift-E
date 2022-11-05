@@ -103,5 +103,7 @@
 }
 
 .gameAttributes {
+  display: flex;
+  margin-top: 2em;
   font-size: smaller;
 }

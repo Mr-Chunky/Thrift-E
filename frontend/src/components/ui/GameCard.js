@@ -54,15 +54,17 @@ function GameCard(props) {
               <h6 key={publisher}>{publisher}</h6>
             ))
           )}
-          <span className={modifiers.gameAttributes}>
-            {props.price_overview.final_formatted}
-          </span>
-          <span
-            className={modifiers.gameAttributes}
-            style={{ paddingLeft: "3.5em" }}
-          >
-            {props.genres[0].description}/{props.genres[1].description}
-          </span>
+          <div className={modifiers.gameAttributes}>
+            <span>{props.price_overview.final_formatted}</span>
+            <span
+              style={{
+                marginLeft: "auto",
+                marginRight: "0",
+              }}
+            >
+              {props.genres[0].description}/{props.genres[1].description}
+            </span>
+          </div>
         </div>
       </div>
       <div className="center-button-bar-holder">

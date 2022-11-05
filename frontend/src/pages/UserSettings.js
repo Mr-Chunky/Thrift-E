@@ -3,9 +3,14 @@ import UserSettingsConfiguration from "../components/user_settings_components/Us
 import UserSettingsHeader from "../components/user_settings_components/UserSettingsHeader";
 import modifiers from "../components/user_settings_components/UserSettings.module.css";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function UserSettingsPage() {
   const navigate = useNavigate();
+  const [displayType, setDisplayType] = useState();
+  const [locale, setLocale] = useState();
+
+  const handleRetrieveData = () => {};
 
   const handleGoBack = () => {
     navigate("/search", { replace: true });
