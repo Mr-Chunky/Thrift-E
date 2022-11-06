@@ -11,6 +11,7 @@ function UserSettingsPage() {
   const [displayMode, setDisplayMode] = useState();
   const [locale, setLocale] = useState();
 
+  // Get the data from child component
   const handleRetrieveData = (props) => {
     setUserId(JSON.parse(window.localStorage.getItem("userId")));
     setDisplayMode(props.displayMode);
@@ -21,10 +22,12 @@ function UserSettingsPage() {
     );
   };
 
+  // Handle the "Go Back" button
   const handleGoBack = () => {
     navigate("/search", { replace: true });
   };
 
+  // Perform the custom backend API call
   useEffect(() => {
     if (displayMode && locale) {
       const payload = {
@@ -53,6 +56,7 @@ function UserSettingsPage() {
       }
     }
   }, [displayMode, locale]);
+
   return (
     <div>
       <UserInputCard>

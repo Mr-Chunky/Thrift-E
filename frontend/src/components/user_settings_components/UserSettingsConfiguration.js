@@ -22,11 +22,13 @@ function UserSettingsConfiguration(props) {
     props.onConfigureSettings(userSettings);
   }
 
+  // Handle different display mode selections
   function changeDisplayTypeHandler(event) {
     setDisplayMode(event.target.value);
     console.warn(`Display type changed to ${displayMode}!`);
   }
 
+  // Handle new dropdown item selection
   function handleLocaleSelection(event) {
     event.preventDefault();
 
