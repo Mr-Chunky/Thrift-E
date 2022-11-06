@@ -51,6 +51,8 @@ function SearchedGameCard(props) {
         image: "placeholder",
         releaseDate: "placeholder",
         localPrice: "placeholder",
+        publisher: "placeholder",
+        saleStatus: "placeholder",
       };
     }
   }, [isFavourited]);
