@@ -1,6 +1,6 @@
 import modifiers from "./Search.module.css";
 import GeneralUICard from "../ui/GeneralUICard";
-import GameCard from "../ui/GameCard";
+import SearchedGameCard from "../ui/SearchedGameCard";
 
 function SearchGamesList(props) {
   return (
@@ -14,7 +14,7 @@ function SearchGamesList(props) {
           }}
         >
           {props.games.map((game) => (
-            <GameCard
+            <SearchedGameCard
               key={game.steam_appid}
               steam_appid={game.steam_appid}
               name={game.name}

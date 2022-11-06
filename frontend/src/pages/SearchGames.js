@@ -66,6 +66,7 @@ function SearchGamesPage() {
     console.log(currentUserContext.gameId);
   };
 
+  // Handles Steam API call
   useEffect(() => {
     setValidGameId(currentUserContext?.gameId);
     setUserId(JSON.parse(window.localStorage.getItem("userId")));
