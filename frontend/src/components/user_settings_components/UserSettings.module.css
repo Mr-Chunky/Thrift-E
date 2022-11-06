@@ -2,12 +2,10 @@
   display: flex;
 }
 
-.radioInputHolder {
-  margin-right: 4em;
-}
-
-.localeButtonHolder {
-  margin-top: 1em;
+.allFormElementsHolder {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
 }
 
 #formCheckTwo {
@@ -19,4 +17,13 @@
   color: black;
   outline-style: groove;
   outline-color: black;
+  margin-top: 1em;
+}
+
+#btnGoBack {
+  background-color: white;
+  color: black;
+  outline-style: groove;
+  outline-color: black;
+  margin-top: 4em;
 }

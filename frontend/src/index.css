@@ -66,5 +66,6 @@ h1 {
 }
 
 .dropdown {
-  margin-left: auto;
+  margin-left: 3em;
+  padding-bottom: 1.7em;
 }
