@@ -44,6 +44,14 @@ function SearchedGameCard(props) {
   // Storing the game in custom backend
   useEffect(() => {
     if (isFavourited) {
+      const payload = {
+        _userId: "placeholder",
+        title: "placeholder",
+        genre: "placeholder",
+        image: "placeholder",
+        releaseDate: "placeholder",
+        localPrice: "placeholder",
+      };
     }
   }, [isFavourited]);
 
