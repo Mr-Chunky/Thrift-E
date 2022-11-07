@@ -1,5 +1,6 @@
 import SearchGamesList from "../components/search_games_components/SearchGamesList.js";
 import SearchGamesSearchBar from "../components/search_games_components/SearchGamesSearchBar.js";
+import SearchGamesFavouritedGames from "../components/search_games_components/SearchGamesFavouritedGames.js";
 import NavBar from "../components/ui/NavBar.js";
 import { useEffect, useState, useContext } from "react";
 import CurrentUserContext from "../storage/current-user-context.js";
@@ -49,8 +50,10 @@ function SearchGamesPage() {
   const [userId, setUserId] = useState();
   const [searchTerm, setSearchTerm] = useState();
 
-  // JSON objects to be passed to child component for dynamic content insertion
+  // JSON objects from Steam to be passed to child component for dynamic content insertion
   const [gameData, setGameData] = useState([]);
+  // Array of objects from custom backend to display in the favourites list
+  const [favouritedGameData, setFavouritedGameData] = useState([]);
 
   const searchGameHandler = (userSearchTerm) => {
     setSearchTerm(userSearchTerm);
@@ -108,15 +111,48 @@ function SearchGamesPage() {
     }
   }, [validGameId, searchTerm]);
 
-  if (userId) {
-    console.log(`>Search Page: User Id - ${userId}`);
-  }
+  // Handles backend API call for stored games in MySQL instance
+  useEffect(() => {
+    if (userId) {
+      let getFavourites;
+      try {
+        getFavourites = fetch(
+          `http://localhost:5041/api/steam/all-games/${userId}`
+        ).then(async (response) => {
+          if (!response.ok) {
+            console.log(response.json());
+            throw new Error(
+              ">Search Page: Error! Can't find games for this user!"
+            );
+          } else if (response.ok) {
+            console.warn(
+              `>Search Page: Success!  Favourites List Status Code - ${response.status}`
+            );
+          }
+        });
+      } catch (err) {
+        console.log(err);
+      }
 
+      setFavouritedGameData([]);
+
+      if (Array.isArray(getFavourites) && getFavourites.length) {
+        setFavouritedGameData((tempArray) => [...tempArray, getFavourites]);
+      }
+    }
+  }, [userId]);
+
+  // TODO: PASS GAME DATA FROM CUSTOM BACKEND CALL TO FAVOURITED GAME LIST
   return (
     <div>
       <NavBar />
       <SearchGamesSearchBar onSearchGame={searchGameHandler} />
-      {gameData.length ? <SearchGamesList games={gameData} /> : null}
+      {Array.isArray(gameData) && gameData.length ? (
+        <SearchGamesList games={gameData} />
+      ) : null}
+      {Array.isArray(favouritedGameData) && favouritedGameData.length ? (
+        <SearchGamesFavouritedGames />
+      ) : null}
     </div>
   );
 }

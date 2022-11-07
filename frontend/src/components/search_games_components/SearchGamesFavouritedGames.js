@@ -1,10 +1,13 @@
 import FavouritedGameCard from "../ui/FavouritedGameCard";
+import GeneralUICard from "../ui/GeneralUICard";
 
 function SearchGamesFavouritedGames() {
   return (
-    <section>
-      <FavouritedGameCard />
-    </section>
+    <GeneralUICard>
+      <section>
+        <FavouritedGameCard />
+      </section>
+    </GeneralUICard>
   );
 }
 

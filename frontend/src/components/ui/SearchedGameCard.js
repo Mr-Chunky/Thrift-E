@@ -11,7 +11,9 @@ props.short_description -- A short "about" statement for the game
 props.genres -- An array of objects containing genres applied to the game, where:
     * id = object.id
     * description = object.description
-props.release_date -- An object containing two items, "Coming Soon (bool)" and "Release Date (Date)"
+props.release_date -- An object containing two items:
+    * coming_soon (bool)
+    * date (Date)
 props.developers -- An array containing the studios that worked on the game
 props.publishers -- An array containing the entities with publishing rights to the game
 props.price_overview -- An object containing details such as:
@@ -25,6 +27,11 @@ props.price_overview -- An object containing details such as:
 */
 
 function SearchedGameCard(props) {
+  const userId = JSON.parse(window.localStorage.getItem("userId"));
+  let saleStatus;
+  props.price_overview.initial - props.price_overview.final > 0
+    ? (saleStatus = 1)
+    : (saleStatus = 0);
   const [isSelected, setIsSelected] = useState(false);
   const [isFavourited, setIsFavourited] = useState(false);
 
@@ -45,17 +52,35 @@ function SearchedGameCard(props) {
   useEffect(() => {
     if (isFavourited) {
       const payload = {
-        _userId: "placeholder",
-        title: "placeholder",
-        genre: "placeholder",
-        image: "placeholder",
-        releaseDate: "placeholder",
-        localPrice: "placeholder",
-        publisher: "placeholder",
-        saleStatus: "placeholder",
+        _userId: userId,
+        title: props.name,
+        genre: props.genres[0].description,
+        image: props.header_image,
+        releaseDate: props.releaseDate,
+        localPrice: props.price_overview.final,
+        publisher: props.publishers[0],
+        saleStatus: saleStatus,
       };
+      try {
+        fetch("http://localhost:5041/api/steam/new-steam-game", {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).then((response) => {
+          if (!response.ok) {
+            console.warn(response.json());
+            throw new Error(`Error!  Current Status: ${response.status}!`);
+          } else if (response.ok) {
+            console.log(response.json());
+          }
+        });
+      } catch (err) {
+        console.log(err);
+      }
     }
-  }, [isFavourited]);
+  }, [isFavourited, props, saleStatus, userId]);
 
   return (
     <li className={modifiers.gameCard}>
