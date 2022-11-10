@@ -17,7 +17,7 @@ function LoginInputForm(props) {
     // for checking purposes
     const usernameInput = usernameInputRef.current.value;
     const passwordInput = passwordInputRef.current.value;
-    const passwordSalt = "tH1si54Sa1t";
+    const passwordSalt = window.localStorage.getItem("userSalt");
     const saltedPassword = `${passwordInput}:${passwordSalt}`;
     const hashedPassword = sha256(saltedPassword);
 

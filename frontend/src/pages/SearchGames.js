@@ -75,36 +75,34 @@ function SearchGamesPage() {
     setUserId(JSON.parse(window.localStorage.getItem("userId")));
     if (validGameId && searchTerm) {
       try {
-        fetch(`http://localhost:5041/api/steam/steamapi/${validGameId}`).then(
-          async (response) => {
-            console.log(
-              `>Search Page: Game HTTP Status Code - ${response.status}`
+        fetch(
+          `http://localhost/SteamService/api/steam/steamapi/${validGameId}`
+        ).then(async (response) => {
+          console.log(
+            `>Search Page: Game HTTP Status Code - ${response.status}`
+          );
+          if (!response.ok) {
+            console.log(response);
+            throw new Error(
+              `>Search Page: Error! Current Status - ${response.status}`
             );
-            if (!response.ok) {
-              console.log(response);
-              throw new Error(
-                `>Search Page: Error! Current Status - ${response.status}`
-              );
-            } else if (response.ok) {
-              let gameInfoObject = await response.json();
-              let finalInfo = JSON.stringify(
-                gameInfoObject[`${validGameId}`]["data"],
-                undefined,
-                2
-              );
-              let finalInfoObject = JSON.parse(finalInfo);
+          } else if (response.ok) {
+            let gameInfoObject = await response.json();
+            let finalInfo = JSON.stringify(
+              gameInfoObject[`${validGameId}`]["data"],
+              undefined,
+              2
+            );
+            let finalInfoObject = JSON.parse(finalInfo);
 
-              console.warn(
-                `>Search Page: Game Info Received - \n------------\n${finalInfo}`
-              );
+            console.warn(
+              `>Search Page: Game Info Received - \n------------\n${finalInfo}`
+            );
 
-              console.log(`>Search Page: Game Name - ${finalInfoObject.name}`);
-
-              setGameData([]);
-              setGameData((tempArray) => [...tempArray, finalInfoObject]);
-            }
+            setGameData([]);
+            setGameData((tempArray) => [...tempArray, finalInfoObject]);
           }
-        );
+        });
       } catch (err) {
         console.log(err);
       }
@@ -117,7 +115,7 @@ function SearchGamesPage() {
       let getFavourites;
       try {
         getFavourites = fetch(
-          `http://localhost:5041/api/steam/all-games/${userId}`
+          `http://localhost/SteamService/api/steam/all-games/${userId}`
         ).then(async (response) => {
           if (!response.ok) {
             console.log(response.json());

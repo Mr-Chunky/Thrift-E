@@ -27,7 +27,7 @@ props.price_overview -- An object containing details such as:
 */
 
 function SearchedGameCard(props) {
-  const userId = JSON.parse(window.localStorage.getItem("userId"));
+  const userId = window.localStorage.getItem("userId");
   let saleStatus;
   props.price_overview.initial - props.price_overview.final > 0
     ? (saleStatus = 1)
@@ -62,7 +62,7 @@ function SearchedGameCard(props) {
         saleStatus: saleStatus,
       };
       try {
-        fetch("http://localhost:5041/api/steam/new-steam-game", {
+        fetch("http://localhost/SteamService/api/steam/new-steam-game", {
           method: "POST",
           body: JSON.stringify(payload),
           headers: {

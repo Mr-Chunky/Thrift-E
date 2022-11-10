@@ -36,8 +36,12 @@ function UserSettingsPage() {
         locale: locale,
       };
 
+      console.log(
+        `Payload Properties: Display - ${payload.displayMode} | Locale - ${payload.locale}`
+      );
+
       try {
-        fetch("https://localhost:7076/api/users/edit-user-settings", {
+        fetch("http://localhost/LoginService/api/users/edit-user-settings", {
           method: "PUT",
           body: JSON.stringify(payload),
           headers: {

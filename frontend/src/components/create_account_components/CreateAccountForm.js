@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import modifiers from "./CreateAccount.module.css";
 import { useRef } from "react";
 import { sha256 } from "js-sha256";
+import { generate } from "randomstring";
 
 function CreateAccountForm(props) {
   const navigate = useNavigate();
@@ -15,7 +16,6 @@ function CreateAccountForm(props) {
   const emailInputRef = useRef();
   const usernameInputRef = useRef();
   const passwordInputRef = useRef();
-  const passwordValidationInputRef = useRef();
 
   // Handle user submission
   async function submitHandler(event) {
@@ -27,7 +27,11 @@ function CreateAccountForm(props) {
     // NOTE: TESTING CODE ONLY
     // TODO: Generate random salt & store salt in DB to
     // fetch later and hash the password dynamically
-    const passwordSalt = "tH1si54Sa1t";
+    const passwordSalt = generate({
+      length: 12,
+      charset: "alphanumeric",
+    });
+    window.localStorage.setItem("userSalt", passwordSalt);
     const inputUserPassword = passwordInputRef.current.value;
     const saltedPassword = `${inputUserPassword}:${passwordSalt}`;
     const hashedPassword = sha256(saltedPassword);
@@ -35,6 +39,7 @@ function CreateAccountForm(props) {
     const user = {
       username: `${inputUsername}`,
       password: `${hashedPassword}`,
+      salt: passwordSalt,
       email: `${inputUserEmail}`,
       userType: 0,
       banStatus: 0,
@@ -44,7 +49,7 @@ function CreateAccountForm(props) {
 
     // POST a new account via HTTP
     try {
-      response = fetch("https://localhost:7076/api/users", {
+      response = fetch("http://localhost/LoginService/api/users", {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -114,22 +119,6 @@ function CreateAccountForm(props) {
           placeholder="New Password"
           id="create-account-password-input"
           ref={passwordInputRef}
-          required
-        />
-      </div>
-      <div className="col">
-        <label
-          className="user-input-label"
-          htmlFor="create-account-password-verification-input"
-        >
-          Re-enter Password
-        </label>
-        <input
-          type="password"
-          className="form-control"
-          placeholder="Re-enter Password"
-          id="create-account-password-verification-input"
-          ref={passwordValidationInputRef}
           required
         />
       </div>

@@ -20,7 +20,7 @@ function LoginPage() {
     if (loginData?.username && loginData?.password) {
       try {
         fetch(
-          `https://localhost:7076/api/users/${loginData.username}-${loginData.password}`
+          `http://localhost/LoginService/api/users/${loginData.username}-${loginData.password}`
         ).then(async (response) => {
           console.log(">Login Page: HTTP Status Code - ", response.status);
           if (!response.ok) {
