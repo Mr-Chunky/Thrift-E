@@ -74,6 +74,7 @@ function SearchedGameCard(props) {
             throw new Error(`Error!  Current Status: ${response.status}!`);
           } else if (response.ok) {
             console.log(response.json());
+            window.location.reload();
           }
         });
       } catch (err) {
@@ -114,7 +115,7 @@ function SearchedGameCard(props) {
           </div>
         </div>
       </div>
-      <div className="center-button-bar-holder">
+      <div className="center-button-bar-holder" id={modifiers.cardButtonHolder}>
         <button
           id={modifiers.favouritesButton}
           className="btn btn-outline-secondary"

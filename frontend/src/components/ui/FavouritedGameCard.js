@@ -47,10 +47,10 @@ function FavouritedGameCard(props) {
           />
         </div>
         <div className={modifiers.cardContent}>
-          <h3>{props.name}</h3>
+          <h3>{props.title}</h3>
           <h6>{props.publisher}</h6>
           <div className={modifiers.gameAttributes}>
-            <span>{props.localPrice}</span>
+            <span>R {(props.localPrice / 100).toFixed(2)}</span>
             <span
               style={{
                 marginLeft: "auto",
@@ -62,7 +62,10 @@ function FavouritedGameCard(props) {
           </div>
         </div>
       </div>
-      <div className="center-button-bar-holder">
+      <div
+        className="center-button-bar-holder"
+        id={modifiers.cardButtonHolderTwo}
+      >
         <button
           id={modifiers.favouritesButtonTwo}
           className="btn btn-outline-secondary"

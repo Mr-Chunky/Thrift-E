@@ -13,11 +13,11 @@ function SearchGamesFavouritedGames(props) {
             display: "flex",
           }}
         >
-          {props.games.map((game) => (
+          {props.games[0].map((game) => (
             <FavouritedGameCard
               key={game._gameId}
               _gameId={game._gameId}
-              name={game.title}
+              title={game.title}
               genre={game.genre}
               image={game.image}
               releaseDate={game.releaseDate}

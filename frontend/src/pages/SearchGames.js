@@ -134,12 +134,15 @@ function SearchGamesPage() {
               )}\n-------------------------`
             );
 
+            let gameInfoString = JSON.stringify(storedGameInfo, undefined, 2);
+            let gameInfoObject = JSON.parse(gameInfoString);
+
             setFavouritedGameData([]);
 
-            if (Array.isArray(storedGameInfo) && storedGameInfo.length) {
+            if (Array.isArray(gameInfoObject) && gameInfoObject.length) {
               setFavouritedGameData((tempArray) => [
                 ...tempArray,
-                storedGameInfo,
+                gameInfoObject,
               ]);
             }
           }
