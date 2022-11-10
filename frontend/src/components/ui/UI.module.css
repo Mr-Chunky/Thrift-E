@@ -62,6 +62,15 @@
   margin-bottom: 0.2em;
 }
 
+.gameCardImage {
+  max-width: 100%;
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
+  border-bottom-style: solid;
+  border-bottom-width: 0.5em;
+  border-bottom-color: #b96b0b;
+}
+
 /* TODO: Implement proper resizing for smaller devices */
 #statsNavButton {
   margin-left: 50px;
@@ -82,16 +91,18 @@
   margin-right: 2.5em;
 }
 
-#gameCardImage {
-  max-width: 100%;
-  border-top-left-radius: 2em;
-  border-top-right-radius: 2em;
-  border-bottom-style: solid;
-  border-bottom-width: 0.5em;
-  border-bottom-color: #b96b0b;
+#favouritesButton {
+  background-color: #b96b0b;
+  color: black;
+  padding-inline-start: 1.5em;
+  padding-inline-end: 1.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  outline-style: groove;
+  outline-color: black;
 }
 
-#favouritesButton {
+#favouritesButtonTwo {
   background-color: #b96b0b;
   color: black;
   padding-inline-start: 1.5em;

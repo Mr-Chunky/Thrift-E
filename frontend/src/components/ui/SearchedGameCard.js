@@ -87,7 +87,7 @@ function SearchedGameCard(props) {
       <div onClick={handleSelection} style={{ cursor: "pointer" }}>
         <div>
           <img
-            id={modifiers.gameCardImage}
+            className={modifiers.gameCardImage}
             src={props.header_image}
             alt="Represents the game"
           />

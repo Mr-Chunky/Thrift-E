@@ -5,7 +5,7 @@ import SearchedGameCard from "../ui/SearchedGameCard";
 function SearchGamesList(props) {
   return (
     <GeneralUICard>
-      <section id={modifiers.gameListHolder}>
+      <section className={modifiers.gameListHolder}>
         <h1>Search Results</h1>
         <ul
           style={{

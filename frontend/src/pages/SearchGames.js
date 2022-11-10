@@ -112,9 +112,8 @@ function SearchGamesPage() {
   // Handles backend API call for stored games in MySQL instance
   useEffect(() => {
     if (userId) {
-      let getFavourites;
       try {
-        getFavourites = fetch(
+        fetch(
           `http://localhost/SteamService/api/steam/all-games/${userId}`
         ).then(async (response) => {
           if (!response.ok) {
@@ -126,16 +125,27 @@ function SearchGamesPage() {
             console.warn(
               `>Search Page: Success!  Favourites List Status Code - ${response.status}`
             );
+            const storedGameInfo = await response.json();
+            console.log(
+              `Array of Favourited Games:\n-------------------------\n${JSON.stringify(
+                storedGameInfo,
+                undefined,
+                2
+              )}\n-------------------------`
+            );
+
+            setFavouritedGameData([]);
+
+            if (Array.isArray(storedGameInfo) && storedGameInfo.length) {
+              setFavouritedGameData((tempArray) => [
+                ...tempArray,
+                storedGameInfo,
+              ]);
+            }
           }
         });
       } catch (err) {
         console.log(err);
-      }
-
-      setFavouritedGameData([]);
-
-      if (Array.isArray(getFavourites) && getFavourites.length) {
-        setFavouritedGameData((tempArray) => [...tempArray, getFavourites]);
       }
     }
   }, [userId]);
@@ -149,7 +159,7 @@ function SearchGamesPage() {
         <SearchGamesList games={gameData} />
       ) : null}
       {Array.isArray(favouritedGameData) && favouritedGameData.length ? (
-        <SearchGamesFavouritedGames />
+        <SearchGamesFavouritedGames games={favouritedGameData} />
       ) : null}
     </div>
   );
