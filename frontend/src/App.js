@@ -4,6 +4,7 @@ import CreateAccountPage from "./pages/CreateAccount";
 import SearchGamesPage from "./pages/SearchGames";
 import UserSettingsPage from "./pages/UserSettings";
 import SimpleStatisticsPage from "./pages/SimpleStatistics";
+import AdvancedStatistics from "./pages/AdvancedStatistics";
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
         <Route
           path="/statistics-simple"
           element={<SimpleStatisticsPage />}
+        ></Route>
+        <Route
+          path="/statistics-advanced"
+          element={<AdvancedStatistics />}
         ></Route>
       </Routes>
     </div>
