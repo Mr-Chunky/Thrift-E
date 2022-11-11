@@ -4,7 +4,7 @@ import modifiers from "./UI.module.css";
 Possible options to choose from when displaying this GameCard:
 ------------------------------------------------------------------
 props._gameId -- ID of the internally stored game in the MySQL database
-props.name -- The name of the game as stored in the MySQL database
+props.title -- The name of the game as stored in the MySQL database
 props.genre -- The genre of the game as stored in the MySQL database
 props.image -- The URL of the image associated with the game as stored in the MySQL database
 props.release_date -- The release date of the game as stored in the MySQL database
@@ -15,26 +15,51 @@ props.saleStatus -- Returns the sale status of the game as stored in the MySQL d
 */
 
 function FavouritedGameCard(props) {
-  //   console.warn(
-  //     `Inside FavouritedGameCard:\n${JSON.stringify(props, undefined, 2)}`
-  //   );
-  //  const [isSelected, setIsSelected] = useState(false);
   const [isUnfavourited, setIsUnfavourited] = useState(false);
-
-  //   const handleSelection = () => {
-  //     if (!isSelected) {
-  //       setIsSelected(true);
-  //     } else if (isSelected) {
-  //       setIsSelected(false);
-  //     }
-  //   };
 
   // Called after "Remove from Favourites" clicked
   const handleUnfavourite = () => {
     setIsUnfavourited(true);
   };
 
-  // Removing the game from the associative table between user and game (TODO)
+  // Removing the game from the associative table between user and game
+  useEffect(() => {
+    if (isUnfavourited) {
+      // Data to send for deletion
+      const payload = {
+        _userId: window.localStorage.getItem("userId"),
+        _gameId: props._gameId,
+      };
+
+      // Actual API call
+      try {
+        fetch(`http://localhost/SteamService/api/steam/remove-favourite-game`, {
+          method: "DELETE",
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).then(async (response) => {
+          console.log(
+            `>Game Card ${props._gameId}: HTTP Status Code - ${response.status}`
+          );
+          if (!response.ok) {
+            console.log(response);
+            throw new Error(
+              `>Game Card ${props._gameId}: Error! Current Status - ${response.status}`
+            );
+          } else if (response.ok) {
+            alert(`Notice: Removed ${props.title} from Favourites.`);
+            setIsUnfavourited(false);
+            window.location.reload();
+          }
+        });
+      } catch (err) {
+        console.log(err);
+        setIsUnfavourited(false);
+      }
+    }
+  }, [isUnfavourited]);
 
   return (
     <li className={modifiers.gameCard}>

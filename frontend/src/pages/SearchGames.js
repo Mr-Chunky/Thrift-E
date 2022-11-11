@@ -153,7 +153,6 @@ function SearchGamesPage() {
     }
   }, [userId]);
 
-  // TODO: PASS GAME DATA FROM CUSTOM BACKEND CALL TO FAVOURITED GAME LIST
   return (
     <div>
       <NavBar />
