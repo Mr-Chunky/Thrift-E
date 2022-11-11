@@ -21,6 +21,16 @@
   box-shadow: 0.15em 0.15em black;
 }
 
+.newsCard {
+  background-color: white;
+  margin-top: 2em;
+  margin-left: 1em;
+  margin-right: 1em;
+  border-style: none;
+  box-shadow: 0.15em 0.15em black;
+  border-radius: 2em;
+}
+
 .generalUICard {
   border-radius: 2.5em;
   background-color: #7e7f80;
@@ -71,7 +81,28 @@
   border-bottom-color: #b96b0b;
 }
 
-/* TODO: Implement proper resizing for smaller devices */
+.newsDate {
+  margin-left: 1em;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: larger;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #b96b0b;
+  border-radius: 1em;
+}
+
+.newsMessage {
+  margin-left: 1em;
+  margin-right: 1em;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: larger;
+  padding: 1em;
+  margin-bottom: 2em;
+}
+
 #statsNavButton {
   margin-left: 50px;
   margin-right: 50px;
