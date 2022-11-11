@@ -17,10 +17,34 @@ function NavBar() {
     navigate("/search", { replace: true });
   };
 
+  const handleNewsNavigate = () => {
+    navigate("/news", { replace: true });
+  };
+
+  const handleAdminNavigate = () => {
+    navigate("/admin", { replace: true });
+  };
+
   return (
     <div className="thrift-e-navbar">
       <img className={modifiers.logoSmall} alt="thrift-e-logo" src={logo} />
       <div id={modifiers.navBarButtonHolder}>
+        <button
+          className={modifiers.navButtons}
+          id={modifiers.adminNavButton}
+          type="button"
+          onClick={handleAdminNavigate}
+        >
+          Admin
+        </button>
+        <button
+          className={modifiers.navButtons}
+          id={modifiers.newsNavButton}
+          type="button"
+          onClick={handleNewsNavigate}
+        >
+          News
+        </button>
         <button
           className={modifiers.navButtons}
           id={modifiers.searchNavButton}

@@ -5,6 +5,8 @@ import SearchGamesPage from "./pages/SearchGames";
 import UserSettingsPage from "./pages/UserSettings";
 import SimpleStatisticsPage from "./pages/SimpleStatistics";
 import AdvancedStatistics from "./pages/AdvancedStatistics";
+import News from "./pages/News";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           path="/statistics-advanced"
           element={<AdvancedStatistics />}
         ></Route>
+        <Route path="/news" element={<News />}></Route>
+        <Route path="/admin" element={<Admin />}></Route>
       </Routes>
     </div>
   );
