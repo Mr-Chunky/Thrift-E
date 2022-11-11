@@ -1,0 +1,62 @@
+.statsHeadings {
+  text-decoration: underline;
+  color: white;
+}
+
+.firstRowStats {
+  display: flex;
+  justify-content: center;
+  margin: 1em auto;
+}
+
+.secondRowStats {
+  display: flex;
+  justify-content: center;
+  margin: 1em auto;
+  margin-top: 3.5em;
+  margin-bottom: 7em;
+}
+
+.statsHolder {
+  margin: 0 auto;
+}
+
+.statsText {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #b96b0b;
+  text-shadow: 1.5px 1.5px 1.5px black;
+  font-size: large;
+  margin-left: 2.5em;
+}
+
+#firstStatistic {
+}
+
+#secondStatistic {
+  margin-left: 5em;
+}
+
+#thirdStatistic {
+  margin-left: 5em;
+}
+
+#fourthStatistic {
+}
+
+#fifthStatistic {
+  margin-left: 5em;
+}
+
+#advancedStatsButton {
+  background-color: #b96b0b;
+  color: black;
+  padding-inline-start: 1.5em;
+  padding-inline-end: 1.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  outline-style: groove;
+  outline-color: black;
+}
+
+#advancedStatsLabel {
+}
