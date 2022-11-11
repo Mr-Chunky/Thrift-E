@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import modifiers from "./CreateAccount.module.css";
 import { useRef } from "react";
-import { sha256 } from "js-sha256";
-import { generate } from "randomstring";
 
 function CreateAccountForm(props) {
   const navigate = useNavigate();
@@ -23,23 +21,12 @@ function CreateAccountForm(props) {
 
     const inputUserEmail = emailInputRef.current.value;
     const inputUsername = usernameInputRef.current.value;
-
-    // NOTE: TESTING CODE ONLY
-    // TODO: Generate random salt & store salt in DB to
-    // fetch later and hash the password dynamically
-    const passwordSalt = generate({
-      length: 12,
-      charset: "alphanumeric",
-    });
-    window.localStorage.setItem("userSalt", passwordSalt);
-    const inputUserPassword = passwordInputRef.current.value;
-    const saltedPassword = `${inputUserPassword}:${passwordSalt}`;
-    const hashedPassword = sha256(saltedPassword);
+    const inputUserPassword = passwordInputRef.current.value; // Hashed, salted and stored in the backend for security reasons
 
     const user = {
       username: `${inputUsername}`,
-      password: `${hashedPassword}`,
-      salt: passwordSalt,
+      password: `${inputUserPassword}`,
+      salt: "haha", // Dummy value, real salt is changed in the backend
       email: `${inputUserEmail}`,
       userType: 0,
       banStatus: 0,

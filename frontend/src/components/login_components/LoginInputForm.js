@@ -1,7 +1,6 @@
 import modifiers from "./Login.module.css";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-import { sha256 } from "js-sha256";
 
 function LoginInputForm(props) {
   const usernameInputRef = useRef();
@@ -12,18 +11,12 @@ function LoginInputForm(props) {
   async function loginHandler(event) {
     event.preventDefault();
 
-    // NOTE: TESTING CODE ONLY
-    // TODO: fetch random salt from DB to hash the password dynamically
-    // for checking purposes
     const usernameInput = usernameInputRef.current.value;
-    const passwordInput = passwordInputRef.current.value;
-    const passwordSalt = window.localStorage.getItem("userSalt");
-    const saltedPassword = `${passwordInput}:${passwordSalt}`;
-    const hashedPassword = sha256(saltedPassword);
+    const passwordInput = passwordInputRef.current.value; // Checked with a salt and hashed in the backend to verify user's identity
 
     const userLoginData = {
       username: usernameInput,
-      password: hashedPassword,
+      password: passwordInput,
     };
 
     props.onGetLoginData(userLoginData);
