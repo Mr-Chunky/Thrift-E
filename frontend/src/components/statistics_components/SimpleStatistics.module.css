@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   margin: 1em auto;
+  text-align: center;
 }
 
 .secondRowStats {
@@ -15,6 +16,7 @@
   margin: 1em auto;
   margin-top: 3.5em;
   margin-bottom: 7em;
+  text-align: center;
 }
 
 .statsHolder {
@@ -26,7 +28,6 @@
   color: #b96b0b;
   text-shadow: 1.5px 1.5px 1.5px black;
   font-size: large;
-  margin-left: 2.5em;
 }
 
 #firstStatistic {

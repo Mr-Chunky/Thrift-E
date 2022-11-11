@@ -1,3 +1,11 @@
+.tableRowOne {
+  border: 1.5px solid black;
+}
+
+.tableRowTwo {
+  border: 1.5px solid black;
+}
+
 #btnGoBack {
   background-color: white;
   color: black;

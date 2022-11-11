@@ -15,6 +15,32 @@ h1 {
   text-shadow: 2px 2px 2px black;
 }
 
+table {
+  width: 100%;
+  margin: 1em;
+  background-color: #b96b0b;
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
+}
+
+th {
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 0.5em;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: larger;
+  font-size: 1.5em;
+}
+
+td {
+  padding: 1em;
+  background-color: white;
+  border-radius: 2em;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
 .col {
   padding-bottom: 1em;
   max-width: 50%;
