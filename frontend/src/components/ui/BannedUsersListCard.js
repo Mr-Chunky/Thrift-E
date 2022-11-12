@@ -1,6 +1,6 @@
 import modifiers from "./UI.module.css";
 
-function HorizontalListCard(props) {
+function BannedUsersListCard(props) {
   return (
     <li className={modifiers.horizontalListCard}>
       <div>
@@ -12,11 +12,11 @@ function HorizontalListCard(props) {
           Email: place@holder.com
         </span>
         <button className="btn btn-outline-secondary" id={modifiers.btnBan}>
-          Ban
+          Unban
         </button>
       </div>
     </li>
   );
 }
 
-export default HorizontalListCard;
+export default BannedUsersListCard;
