@@ -33,7 +33,12 @@ function News() {
       <GeneralUICard>
         <NewsFeed />
       </GeneralUICard>
-      {isModalOpen ? <InputModal handleDiscard={onHandleDiscard} /> : null}
+      {isModalOpen ? (
+        <InputModal
+          handleDiscard={onHandleDiscard}
+          closeModal={setIsModalOpen}
+        />
+      ) : null}
     </div>
   );
 }
