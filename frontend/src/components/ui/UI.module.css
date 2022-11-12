@@ -103,6 +103,35 @@
   margin-bottom: 2em;
 }
 
+.modal {
+  z-index: 300;
+  margin: auto;
+  text-align: center;
+  margin-top: 10em;
+  margin-left: 6em;
+  margin-right: 6em;
+  padding: 2em;
+  border-color: black;
+  border-style: solid;
+  background-color: #7e7f80;
+  border-radius: 2em;
+}
+
+.modalHintHolder {
+  margin-bottom: 1em;
+}
+
+.backdrop {
+  position: fixed;
+  z-index: 200;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
 #statsNavButton {
   margin-left: 50px;
   margin-right: 50px;
@@ -163,4 +192,52 @@
   display: flex;
   margin-top: 2em;
   font-size: smaller;
+}
+
+#btnGoBack {
+  background-color: white;
+  color: black;
+  outline-style: groove;
+  outline-color: black;
+  margin-right: 3em;
+  height: 50px;
+  width: 120px;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 700;
+  font-size: large;
+}
+
+#btnConfirm {
+  background-color: #b96b0b;
+  color: black;
+  padding-inline-start: 1.5em;
+  padding-inline-end: 1.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  outline-style: groove;
+  outline-color: black;
+  margin-left: 3em;
+  height: 50px;
+  width: 120px;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 700;
+  font-size: large;
+}
+
+#modalHint {
+  color: #b96b0b;
+  text-shadow: 1.5px 1.5px 1.5px black;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 700;
+}
+
+#modalTextArea {
+  border-radius: 1em;
+  border: 5px solid black;
+  padding: 10px;
+  resize: none;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: #b8b8b8;
 }
