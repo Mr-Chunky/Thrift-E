@@ -3,11 +3,12 @@ import NewsHeader from "../components/news_components/NewsHeader";
 import GeneralUICard from "../components/ui/GeneralUICard";
 import NavBar from "../components/ui/NavBar";
 import modifiers from "../components/news_components/News.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InputModal from "../components/ui/InputModal";
 
 function News() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newsFeed, setNewsFeed] = useState([]);
 
   const handleAddBulletin = () => {
     setIsModalOpen(true);
@@ -16,6 +17,51 @@ function News() {
   const onHandleDiscard = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    try {
+      fetch(`http://localhost/LoginService/api/users/all-messages`).then(
+        async (response) => {
+          if (!response.ok) {
+            console.log(response.json());
+            throw new Error(
+              ">Search Page: Error! Can't find games for this user!"
+            );
+          } else if (response.ok) {
+            console.warn(
+              `>Search Page: Success!  Favourites List Status Code - ${response.status}`
+            );
+            const storedBulletinInfo = await response.json();
+            console.log(
+              `Array of News Bulletins:\n-------------------------\n${JSON.stringify(
+                storedBulletinInfo,
+                undefined,
+                2
+              )}\n-------------------------`
+            );
+
+            let bulletinInfoString = JSON.stringify(
+              storedBulletinInfo,
+              undefined,
+              2
+            );
+            let bulletinInfoObject = JSON.parse(bulletinInfoString);
+
+            setNewsFeed([]);
+
+            if (
+              Array.isArray(bulletinInfoObject) &&
+              bulletinInfoObject.length
+            ) {
+              setNewsFeed((tempArray) => [...tempArray, bulletinInfoObject]);
+            }
+          }
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   return (
     <div>
@@ -31,7 +77,9 @@ function News() {
         </button>
       </div>
       <GeneralUICard>
-        <NewsFeed />
+        {Array.isArray(newsFeed) && newsFeed.length ? (
+          <NewsFeed news={newsFeed} />
+        ) : null}
       </GeneralUICard>
       {isModalOpen ? (
         <InputModal

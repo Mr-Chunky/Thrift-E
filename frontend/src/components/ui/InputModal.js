@@ -44,8 +44,9 @@ function InputModal(props) {
       } catch (err) {
         console.log(err);
       }
-      setNewBulletin(undefined);
+      setNewBulletin();
       props.closeModal(false);
+      window.location.reload();
     }
   }, [newBulletin]);
 
