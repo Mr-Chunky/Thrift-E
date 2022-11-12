@@ -3,6 +3,7 @@ import NewsBulletinCard from "../ui/NewsBulletinCard";
 function NewsFeed(props) {
   // Reversing the news array to make sure that the newest entry is always at the top
   const reversedNews = [...props.news[0]].reverse();
+
   return (
     <ul style={{ listStyle: "none" }}>
       {reversedNews.map((news) => (
