@@ -47,12 +47,12 @@ function UserSettingsPage() {
           headers: {
             "Content-Type": "application/json",
           },
-        }).then((response) => {
+        }).then(async (response) => {
           if (!response.ok) {
-            console.warn(response.json());
+            console.warn(await response.json());
             throw new Error(`Error! Current Status: ${response.status}`);
           } else if (response.ok) {
-            console.log(response.json());
+            console.log(await response.json());
           }
         });
       } catch (err) {
