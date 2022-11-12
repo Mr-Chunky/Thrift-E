@@ -1,6 +1,7 @@
 .statsHeadings {
   text-decoration: underline;
-  color: white;
+  color: #b96b0b;
+  text-shadow: 2px 1px 2px black;
 }
 
 .firstRowStats {
@@ -25,8 +26,8 @@
 
 .statsText {
   font-family: Georgia, "Times New Roman", Times, serif;
-  color: #b96b0b;
-  text-shadow: 1.5px 1.5px 1.5px black;
+  color: white;
+  text-shadow: 2px 1px 2px black;
   font-size: large;
 }
 

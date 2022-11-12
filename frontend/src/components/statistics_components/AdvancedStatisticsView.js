@@ -24,6 +24,20 @@ function AdvancedStatisticsView() {
           <td>Number</td>
           <td>Number</td>
         </tr>
+        <tr className={modifiers.tableRowThree}>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr className={modifiers.tableRowFour}>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
       </table>
     </div>
   );
