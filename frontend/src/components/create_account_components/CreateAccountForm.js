@@ -1,13 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import modifiers from "./CreateAccount.module.css";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function CreateAccountForm(props) {
+  const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate();
 
   // Handle cancel button
   const cancelHandler = () => {
     navigate("/", { replace: true });
+  };
+
+  // Handle checkbox checking
+  const handleChecking = () => {
+    if (isChecked) {
+      setIsChecked(false);
+    } else setIsChecked(true);
   };
 
   // Fetch user info from input fields
@@ -22,13 +30,20 @@ function CreateAccountForm(props) {
     const inputUserEmail = emailInputRef.current.value;
     const inputUsername = usernameInputRef.current.value;
     const inputUserPassword = passwordInputRef.current.value; // Hashed, salted and stored in the backend for security reasons
+    let userType;
+
+    if (isChecked) {
+      userType = 1;
+    } else {
+      userType = 0;
+    }
 
     const user = {
       username: `${inputUsername}`,
       password: `${inputUserPassword}`,
       salt: "haha", // Dummy value, real salt is changed in the backend
       email: `${inputUserEmail}`,
-      userType: 0,
+      userType: userType,
       banStatus: 0,
     };
 
@@ -107,6 +122,21 @@ function CreateAccountForm(props) {
           id="create-account-password-input"
           ref={passwordInputRef}
           required
+        />
+      </div>
+      <div id="user-type-checkbox-holder" className="col">
+        <label
+          className="user-type-label"
+          htmlFor="create-account-user-type"
+          style={{ marginRight: "1em" }}
+        >
+          Create as Admin
+        </label>
+        <input
+          id="create-account-user-type"
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleChecking}
         />
       </div>
       <div className="center-button-bar-holder">

@@ -100,3 +100,11 @@ td {
   margin-left: 3em;
   padding-bottom: 1.7em;
 }
+
+#user-type-checkbox-holder {
+  text-align: right;
+  color: white;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 2px 2px black;
+  margin-bottom: 0.3em;
+}
