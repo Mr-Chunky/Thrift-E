@@ -155,12 +155,15 @@ function SearchGamesPage() {
 
   return (
     <div>
-      <NavBar />
-      <SearchGamesSearchBar onSearchGame={searchGameHandler} />
-      {Array.isArray(gameData) && gameData.length ? (
+      {userId ? <NavBar /> : "ERROR: User is not properly authenticated!"}
+      {userId && <SearchGamesSearchBar onSearchGame={searchGameHandler} />}
+
+      {userId && Array.isArray(gameData) && gameData.length ? (
         <SearchGamesList games={gameData} />
       ) : null}
-      {Array.isArray(favouritedGameData) && favouritedGameData.length ? (
+      {userId &&
+      Array.isArray(favouritedGameData) &&
+      favouritedGameData.length ? (
         <SearchGamesFavouritedGames games={favouritedGameData} />
       ) : null}
     </div>

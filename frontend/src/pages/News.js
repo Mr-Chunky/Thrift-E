@@ -9,6 +9,7 @@ import InputModal from "../components/ui/InputModal";
 function News() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newsFeed, setNewsFeed] = useState([]);
+  const [userId, setUserId] = useState();
 
   const handleAddBulletin = () => {
     setIsModalOpen(true);
@@ -19,6 +20,7 @@ function News() {
   };
 
   useEffect(() => {
+    setUserId(JSON.parse(window.localStorage.getItem("userId")));
     try {
       fetch(`http://localhost/LoginService/api/users/all-messages`).then(
         async (response) => {
@@ -65,19 +67,23 @@ function News() {
 
   return (
     <div>
-      <NavBar />
-      <NewsHeader />
-      <div className={modifiers.newsBulletinHolder}>
-        <button
-          id={modifiers.addNewsBulletin}
-          type="button"
-          onClick={handleAddBulletin}
-        >
-          ADD BULLETIN
-        </button>
-      </div>
+      {userId && <NavBar />}
+      {userId && <NewsHeader />}
+      {userId ? (
+        <div className={modifiers.newsBulletinHolder}>
+          <button
+            id={modifiers.addNewsBulletin}
+            type="button"
+            onClick={handleAddBulletin}
+          >
+            ADD BULLETIN
+          </button>
+        </div>
+      ) : (
+        "ERROR: User is not properly authenticated!"
+      )}
       <GeneralUICard>
-        {Array.isArray(newsFeed) && newsFeed.length ? (
+        {userId && Array.isArray(newsFeed) && newsFeed.length ? (
           <NewsFeed news={newsFeed} />
         ) : null}
       </GeneralUICard>

@@ -54,7 +54,7 @@
 }
 
 .navButtons {
-  font-size: 1.6em;
+  font-size: 1.2em;
   font-weight: 700;
   border-radius: 1em;
   text-transform: uppercase;
@@ -173,7 +173,11 @@
 }
 
 #searchNavButton {
-  width: 9.55em;
+  width: 9.74em;
+  margin-left: 2.5em;
+}
+
+#logoutNavButton {
   margin-left: 2.5em;
 }
 

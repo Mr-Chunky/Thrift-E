@@ -9,6 +9,7 @@ function AdvancedStatistics() {
   const [mostFavouritedGame, setMostFavouritedGame] = useState();
   const [lowestPriceGame, setLowestPriceGame] = useState();
   const [mostFavouritedGenre, setMostFavouritedGenre] = useState();
+  const [userId, setUserId] = useState();
   const navigate = useNavigate();
 
   const handleGoBack = () => {
@@ -17,6 +18,7 @@ function AdvancedStatistics() {
 
   // Get most favourited game from backend API
   useEffect(() => {
+    setUserId(JSON.parse(window.localStorage.getItem("userId")));
     try {
       fetch(
         `http://localhost/SteamService/api/steam/game/most-favourited`
@@ -110,24 +112,31 @@ function AdvancedStatistics() {
 
   return (
     <div>
-      <AdvancedStatisticsHeader />
+      {userId && <AdvancedStatisticsHeader />}
+
       <GeneralUICard>
-        <AdvancedStatisticsView
-          mostFavouritedGame={mostFavouritedGame}
-          lowestPriceGame={lowestPriceGame}
-          mostFavouritedGenre={mostFavouritedGenre}
-        />
+        {userId ? (
+          <AdvancedStatisticsView
+            mostFavouritedGame={mostFavouritedGame}
+            lowestPriceGame={lowestPriceGame}
+            mostFavouritedGenre={mostFavouritedGenre}
+          />
+        ) : (
+          "ERROR: User is not properly authenticated!"
+        )}
       </GeneralUICard>
-      <div className="center-button-bar-holder">
-        <button
-          className="btn btn-outline-secondary"
-          type="button"
-          id={modifiers.btnGoBack}
-          onClick={handleGoBack}
-        >
-          Go Back
-        </button>
-      </div>
+      {userId ? (
+        <div className="center-button-bar-holder">
+          <button
+            className="btn btn-outline-secondary"
+            type="button"
+            id={modifiers.btnGoBack}
+            onClick={handleGoBack}
+          >
+            Go Back
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }

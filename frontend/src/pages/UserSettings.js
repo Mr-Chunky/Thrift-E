@@ -11,9 +11,12 @@ function UserSettingsPage() {
   const [displayMode, setDisplayMode] = useState();
   const [locale, setLocale] = useState();
 
+  useEffect(() => {
+    setUserId(JSON.parse(window.localStorage.getItem("userId")));
+  }, []);
+
   // Get the data from child component
   const handleRetrieveData = (props) => {
-    setUserId(JSON.parse(window.localStorage.getItem("userId")));
     setDisplayMode(props.displayMode);
     setLocale(props.locale);
 
@@ -64,19 +67,25 @@ function UserSettingsPage() {
   return (
     <div>
       <UserInputCard>
-        <UserSettingsHeader />
-        <UserSettingsConfiguration onConfigureSettings={handleRetrieveData} />
+        {userId ? <UserSettingsHeader /> : null}
+        {userId ? (
+          <UserSettingsConfiguration onConfigureSettings={handleRetrieveData} />
+        ) : (
+          "ERROR: User is not properly authenticated!"
+        )}
       </UserInputCard>
-      <div className="center-button-bar-holder">
-        <button
-          className="btn btn-outline-secondary"
-          type="button"
-          id={modifiers.btnGoBack}
-          onClick={handleGoBack}
-        >
-          Go Back
-        </button>
-      </div>
+      {userId ? (
+        <div className="center-button-bar-holder">
+          <button
+            className="btn btn-outline-secondary"
+            type="button"
+            id={modifiers.btnGoBack}
+            onClick={handleGoBack}
+          >
+            Go Back
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }

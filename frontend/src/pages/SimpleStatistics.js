@@ -7,9 +7,11 @@ function SimpleStatisticsPage() {
   const [mostFavouritedGame, setMostFavouritedGame] = useState();
   const [lowestPriceGame, setLowestPriceGame] = useState();
   const [mostFavouritedGenre, setMostFavouritedGenre] = useState();
+  const [userId, setUserId] = useState();
 
   // Get most favourited game from backend API
   useEffect(() => {
+    setUserId(JSON.parse(window.localStorage.getItem("userId")));
     try {
       fetch(
         `http://localhost/SteamService/api/steam/game/most-favourited`
@@ -103,13 +105,17 @@ function SimpleStatisticsPage() {
 
   return (
     <div>
-      <NavBar />
-      <SimpleStatisticsHeader />
-      <SimpleStatisticsView
-        mostFavouritedGame={mostFavouritedGame}
-        lowestPriceGame={lowestPriceGame}
-        mostFavouritedGenre={mostFavouritedGenre}
-      />
+      {userId && <NavBar />}
+      {userId && <SimpleStatisticsHeader />}
+      {userId ? (
+        <SimpleStatisticsView
+          mostFavouritedGame={mostFavouritedGame}
+          lowestPriceGame={lowestPriceGame}
+          mostFavouritedGenre={mostFavouritedGenre}
+        />
+      ) : (
+        "ERROR: User is not properly authenticated!"
+      )}
     </div>
   );
 }

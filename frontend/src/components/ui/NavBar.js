@@ -13,6 +13,11 @@ function NavBar() {
     navigate("/user-settings", { replace: true });
   };
 
+  const handleLogoutNavigate = () => {
+    window.localStorage.clear();
+    navigate("/", { replace: true });
+  };
+
   const handleSearchNavigate = () => {
     navigate("/search", { replace: true });
   };
@@ -68,6 +73,14 @@ function NavBar() {
           onClick={handleUserSettingsNavigate}
         >
           Settings
+        </button>
+        <button
+          className={modifiers.navButtons}
+          id={modifiers.logoutNavButton}
+          type="button"
+          onClick={handleLogoutNavigate}
+        >
+          Logout
         </button>
       </div>
     </div>
