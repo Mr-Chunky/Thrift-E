@@ -9,6 +9,19 @@
 .tableRowThree {
 }
 
+.rowHeaders {
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 0.5em;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: larger;
+  font-size: 1.5em;
+  color: #b96b0b;
+  text-shadow: 1px 0px 1px black;
+  border-top: 3px solid white;
+}
+
 #btnGoBack {
   background-color: white;
   color: black;

@@ -148,6 +148,13 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+.characterCount {
+  color: white;
+  font-family: "Times New Roman", Times, serif;
+  text-shadow: 2px 1px 2px black;
+  text-align: right;
+}
+
 #statsNavButton {
   margin-left: 50px;
   margin-right: 50px;

@@ -16,13 +16,17 @@ function SimpleStatisticsView(props) {
           <div id={modifiers.firstStatistic}>
             <h4 className={modifiers.statsHeadings}>Most-Favourited Game</h4>
             <span className={modifiers.statsText}>
-              {props.mostFavouritedGame.title}
+              {props.mostFavouritedGame
+                ? props.mostFavouritedGame.title
+                : "None"}
             </span>
           </div>
           <div id={modifiers.secondStatistic}>
             <h4 className={modifiers.statsHeadings}>Lowest Sale Price</h4>
             <span className={modifiers.statsText}>
-              {props.lowestPriceGame.lowestPrice}
+              {props.lowestPriceGame
+                ? props.lowestPriceGame.lowestPrice
+                : "None"}
             </span>
           </div>
           <div id={modifiers.thirdStatistic}>
@@ -34,7 +38,9 @@ function SimpleStatisticsView(props) {
           <div id={modifiers.fourthStatistic}>
             <h4 className={modifiers.statsHeadings}>Most-Favourited Genre</h4>
             <span className={modifiers.statsText}>
-              {props.mostFavouritedGenre.genre}
+              {props.mostFavouritedGenre
+                ? props.mostFavouritedGenre.genre
+                : "None"}
             </span>
           </div>
           <div id={modifiers.fifthStatistic}>

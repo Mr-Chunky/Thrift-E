@@ -5,12 +5,17 @@ import React from "react";
 
 function InputModal(props) {
   const textReference = useRef();
+  const [wordCount, setWordCount] = useState(0);
   const [newBulletin, setNewBulletin] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     setNewBulletin(textReference.current.value);
+  };
+
+  const handleTyping = (event) => {
+    setWordCount(event.target.value.length);
   };
 
   useEffect(() => {
@@ -62,7 +67,11 @@ function InputModal(props) {
             rows="10"
             cols="150"
             ref={textReference}
+            onChange={handleTyping}
           ></textarea>
+        </div>
+        <div className={modifiers.characterCount}>
+          <span>{wordCount}/250</span>
         </div>
         <div className="center-button-bar-holder">
           <button
