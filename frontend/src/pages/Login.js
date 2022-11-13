@@ -29,12 +29,21 @@ function LoginPage() {
               `>Login Page: Error! Current Status - ${response.status}`
             );
           } else if (response.ok) {
-            let userId = await response.json();
-            console.log(`>Login Page: User ID Received - ${userId}`);
-            currentUserContext.getCurrentUser(userId);
-            window.localStorage.setItem("userId", userId);
+            let userData = await response.json();
+            console.log(
+              `>Login Page: User Metadata Received -\n${JSON.stringify(
+                userData,
+                undefined,
+                2
+              )}`
+            );
+            currentUserContext.getCurrentUser(userData._userId);
+            currentUserContext.getCurrentUserType(userData.userType);
+            currentUserContext.getCurrentUserBanStatus(userData.banStatus);
+            window.localStorage.setItem("userId", userData._userId);
+            window.localStorage.setItem("userType", userData.userType);
+            window.localStorage.setItem("banStatus", userData.banStatus);
             navigate("/search", { replace: true });
-            return userId;
           }
         });
       } catch (err) {
