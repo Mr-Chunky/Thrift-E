@@ -2,7 +2,7 @@ import modifiers from "./UI.module.css";
 import logo from "../../images/thrift-e-logo.svg";
 import { useNavigate } from "react-router-dom";
 
-function NavBar() {
+function NavBar(props) {
   const navigate = useNavigate();
 
   const handleStatsNavigate = () => {
@@ -34,14 +34,16 @@ function NavBar() {
     <div className="thrift-e-navbar">
       <img className={modifiers.logoSmall} alt="thrift-e-logo" src={logo} />
       <div id={modifiers.navBarButtonHolder}>
-        <button
-          className={modifiers.navButtons}
-          id={modifiers.adminNavButton}
-          type="button"
-          onClick={handleAdminNavigate}
-        >
-          Admin
-        </button>
+        {props.userId && props.banStatus === 0 && props.userType === 1 && (
+          <button
+            className={modifiers.navButtons}
+            id={modifiers.adminNavButton}
+            type="button"
+            onClick={handleAdminNavigate}
+          >
+            Admin
+          </button>
+        )}
         <button
           className={modifiers.navButtons}
           id={modifiers.newsNavButton}

@@ -8,10 +8,14 @@ function SimpleStatisticsPage() {
   const [lowestPriceGame, setLowestPriceGame] = useState();
   const [mostFavouritedGenre, setMostFavouritedGenre] = useState();
   const [userId, setUserId] = useState();
+  const [banStatus, setBanStatus] = useState();
+  const [userType, setUserType] = useState();
 
   // Get most favourited game from backend API
   useEffect(() => {
     setUserId(JSON.parse(window.localStorage.getItem("userId")));
+    setBanStatus(JSON.parse(window.localStorage.getItem("banStatus")));
+    setUserType(JSON.parse(window.localStorage.getItem("userType")));
     try {
       fetch(
         `http://localhost/SteamService/api/steam/game/most-favourited`
@@ -105,9 +109,11 @@ function SimpleStatisticsPage() {
 
   return (
     <div>
-      {userId && <NavBar />}
-      {userId && <SimpleStatisticsHeader />}
-      {userId ? (
+      {userId && banStatus === 0 && (
+        <NavBar userId={userId} banStatus={banStatus} userType={userType} />
+      )}
+      {userId && banStatus === 0 && <SimpleStatisticsHeader />}
+      {userId && banStatus === 0 ? (
         <SimpleStatisticsView
           mostFavouritedGame={mostFavouritedGame}
           lowestPriceGame={lowestPriceGame}

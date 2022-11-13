@@ -10,10 +10,14 @@ function Admin() {
   const [users, setUsers] = useState([]);
   const [bannedUsers, setBannedUsers] = useState([]);
   const [userId, setUserId] = useState();
+  const [banStatus, setBanStatus] = useState();
+  const [userType, setUserType] = useState();
 
   // Fetch users that ARE NOT banned from backend
   useEffect(() => {
     setUserId(JSON.parse(window.localStorage.getItem("userId")));
+    setBanStatus(JSON.parse(window.localStorage.getItem("banStatus")));
+    setUserType(JSON.parse(window.localStorage.getItem("userType")));
     try {
       fetch(`http://localhost/LoginService/api/users/unbanned`).then(
         async (response) => {
@@ -98,26 +102,36 @@ function Admin() {
 
   return (
     <div>
-      {userId && <NavBar />}
-      {userId && <AdminHeader />}
-      {userId ? <h3 className={modifiers.sectionTitle}>Users</h3> : null}
+      {userId && banStatus === 0 && userType === 1 && (
+        <NavBar userId={userId} banStatus={banStatus} userType={userType} />
+      )}
+      {userId && banStatus === 0 && userType === 1 && <AdminHeader />}
+      {userId && banStatus === 0 && userType === 1 ? (
+        <h3 className={modifiers.sectionTitle}>Users</h3>
+      ) : null}
       <GeneralUICard>
         <div style={{ margin: "auto" }}>
-          {userId && Array.isArray(users) && users.length ? (
+          {userId &&
+          banStatus === 0 &&
+          userType === 1 &&
+          Array.isArray(users) &&
+          users.length ? (
             <AdminUsers users={users} />
-          ) : (
-            "ERROR: User is not properly authenticated!"
-          )}
+          ) : null}
         </div>
       </GeneralUICard>
-      {userId && (
+      {userId && banStatus === 0 && userType === 1 && (
         <h3 className={modifiers.sectionTitle} style={{ marginTop: "2em" }}>
           Banned Users
         </h3>
       )}
       <GeneralUICard>
         <div style={{ margin: "auto" }}>
-          {userId && Array.isArray(bannedUsers) && bannedUsers.length ? (
+          {userId &&
+          banStatus === 0 &&
+          userType === 1 &&
+          Array.isArray(bannedUsers) &&
+          bannedUsers.length ? (
             <AdminBannedUsers bannedUsers={bannedUsers} />
           ) : null}
         </div>

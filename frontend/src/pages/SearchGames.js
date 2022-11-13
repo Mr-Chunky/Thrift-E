@@ -48,6 +48,8 @@ function SearchGamesPage() {
   const [validGameId, setValidGameId] = useState(0);
   const currentUserContext = useContext(CurrentUserContext);
   const [userId, setUserId] = useState();
+  const [banStatus, setBanStatus] = useState();
+  const [userType, setUserType] = useState();
   const [searchTerm, setSearchTerm] = useState();
 
   // JSON objects from Steam to be passed to child component for dynamic content insertion
@@ -73,6 +75,8 @@ function SearchGamesPage() {
   useEffect(() => {
     setValidGameId(currentUserContext?.gameId);
     setUserId(JSON.parse(window.localStorage.getItem("userId")));
+    setBanStatus(JSON.parse(window.localStorage.getItem("banStatus")));
+    setUserType(JSON.parse(window.localStorage.getItem("userType")));
     if (validGameId && searchTerm) {
       try {
         fetch(
@@ -155,13 +159,23 @@ function SearchGamesPage() {
 
   return (
     <div>
-      {userId ? <NavBar /> : "ERROR: User is not properly authenticated!"}
-      {userId && <SearchGamesSearchBar onSearchGame={searchGameHandler} />}
+      {userId && banStatus === 0 ? (
+        <NavBar userId={userId} banStatus={banStatus} userType={userType} />
+      ) : (
+        "ERROR: User is not properly authenticated!"
+      )}
+      {userId && banStatus === 0 && (
+        <SearchGamesSearchBar onSearchGame={searchGameHandler} />
+      )}
 
-      {userId && Array.isArray(gameData) && gameData.length ? (
+      {userId &&
+      banStatus === 0 &&
+      Array.isArray(gameData) &&
+      gameData.length ? (
         <SearchGamesList games={gameData} />
       ) : null}
       {userId &&
+      banStatus === 0 &&
       Array.isArray(favouritedGameData) &&
       favouritedGameData.length ? (
         <SearchGamesFavouritedGames games={favouritedGameData} />

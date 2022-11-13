@@ -8,11 +8,13 @@ import { useEffect, useState } from "react";
 function UserSettingsPage() {
   const navigate = useNavigate();
   const [userId, setUserId] = useState();
+  const [banStatus, setBanStatus] = useState();
   const [displayMode, setDisplayMode] = useState();
   const [locale, setLocale] = useState();
 
   useEffect(() => {
     setUserId(JSON.parse(window.localStorage.getItem("userId")));
+    setBanStatus(JSON.parse(window.localStorage.getItem("banStatus")));
   }, []);
 
   // Get the data from child component
@@ -67,14 +69,14 @@ function UserSettingsPage() {
   return (
     <div>
       <UserInputCard>
-        {userId ? <UserSettingsHeader /> : null}
-        {userId ? (
+        {userId && banStatus === 0 ? <UserSettingsHeader /> : null}
+        {userId && banStatus === 0 ? (
           <UserSettingsConfiguration onConfigureSettings={handleRetrieveData} />
         ) : (
           "ERROR: User is not properly authenticated!"
         )}
       </UserInputCard>
-      {userId ? (
+      {userId && banStatus === 0 ? (
         <div className="center-button-bar-holder">
           <button
             className="btn btn-outline-secondary"

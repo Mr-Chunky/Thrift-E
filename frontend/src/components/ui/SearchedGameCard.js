@@ -56,7 +56,7 @@ function SearchedGameCard(props) {
         title: props.name,
         genre: props.genres[0].description,
         image: props.header_image,
-        releaseDate: props.releaseDate,
+        releaseDate: props.release_date.date,
         localPrice: props.price_overview.final,
         publisher: props.publishers[0],
         saleStatus: saleStatus,

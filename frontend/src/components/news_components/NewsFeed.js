@@ -5,7 +5,7 @@ function NewsFeed(props) {
   const reversedNews = [...props.news[0]].reverse();
 
   return (
-    <ul style={{ listStyle: "none" }}>
+    <ul style={{ listStyle: "none", maxWidth: "98%", minWidth: "50%" }}>
       {reversedNews.map((news) => (
         <NewsBulletinCard
           key={news._siteSettingsId}
