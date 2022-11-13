@@ -1,5 +1,3 @@
-// TODO: FIX REPETITIVE CALLS TO BACKEND
-
 import GeneralUICard from "../components/ui/GeneralUICard";
 import NavBar from "../components/ui/NavBar";
 import AdminHeader from "../components/admin_components/AdminHeader";
@@ -11,9 +9,11 @@ import { useState, useEffect } from "react";
 function Admin() {
   const [users, setUsers] = useState([]);
   const [bannedUsers, setBannedUsers] = useState([]);
+  const [userId, setUserId] = useState();
 
   // Fetch users that ARE NOT banned from backend
   useEffect(() => {
+    setUserId(JSON.parse(window.localStorage.getItem("userId")));
     try {
       fetch(`http://localhost/LoginService/api/users/unbanned`).then(
         async (response) => {
@@ -98,22 +98,26 @@ function Admin() {
 
   return (
     <div>
-      <NavBar />
-      <AdminHeader />
-      <h3 className={modifiers.sectionTitle}>Users</h3>
+      {userId && <NavBar />}
+      {userId && <AdminHeader />}
+      {userId ? <h3 className={modifiers.sectionTitle}>Users</h3> : null}
       <GeneralUICard>
         <div style={{ margin: "auto" }}>
-          {Array.isArray(users) && users.length ? (
+          {userId && Array.isArray(users) && users.length ? (
             <AdminUsers users={users} />
-          ) : null}
+          ) : (
+            "ERROR: User is not properly authenticated!"
+          )}
         </div>
       </GeneralUICard>
-      <h3 className={modifiers.sectionTitle} style={{ marginTop: "2em" }}>
-        Banned Users
-      </h3>
+      {userId && (
+        <h3 className={modifiers.sectionTitle} style={{ marginTop: "2em" }}>
+          Banned Users
+        </h3>
+      )}
       <GeneralUICard>
         <div style={{ margin: "auto" }}>
-          {Array.isArray(bannedUsers) && bannedUsers.length ? (
+          {userId && Array.isArray(bannedUsers) && bannedUsers.length ? (
             <AdminBannedUsers bannedUsers={bannedUsers} />
           ) : null}
         </div>
