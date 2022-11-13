@@ -25,6 +25,7 @@ function LoginPage() {
           console.log(">Login Page: HTTP Status Code - ", response.status);
           if (!response.ok) {
             console.log(response);
+            alert("Error: User does not exist.");
             throw new Error(
               `>Login Page: Error! Current Status - ${response.status}`
             );
