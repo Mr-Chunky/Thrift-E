@@ -22,6 +22,10 @@ function FavouritedGameCard(props) {
     setIsUnfavourited(true);
   };
 
+  const handleRedirect = () => {
+    window.location.href = `https://store.steampowered.com/app/${props._gameId}`;
+  };
+
   // Removing the game from the associative table between user and game
   useEffect(() => {
     if (isUnfavourited) {
@@ -63,7 +67,7 @@ function FavouritedGameCard(props) {
 
   return (
     <li className={modifiers.gameCard}>
-      <div /* onClick={handleSelection} style={{ cursor: "pointer" }} */>
+      <div onClick={handleRedirect} style={{ cursor: "pointer" }}>
         <div>
           <img
             className={modifiers.gameCardImage}

@@ -52,6 +52,7 @@ function SearchedGameCard(props) {
   useEffect(() => {
     if (isFavourited) {
       const payload = {
+        _gameId: `${props.steam_appid}`,
         _userId: userId,
         title: props.name,
         genre: props.genres[0].description,
