@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import modifiers from "./UI.module.css";
+
 /*
 Possible options to choose from when displaying this GameCard:
 ------------------------------------------------------------------
@@ -5,7 +8,7 @@ props._gameId -- ID of the internally stored game in the MySQL database
 props.title -- The name of the game as stored in the MySQL database
 props.genre -- The genre of the game as stored in the MySQL database
 props.image -- The URL of the image associated with the game as stored in the MySQL database
-props.release_date -- The release date of the game as stored in the MySQL database
+props.releaseDate -- The release date of the game as stored in the MySQL database
 props.localPrice -- The price of the game as stored in the MySQL database (move decimal place 2 places to the left)
 props.publisher -- The publisher of the game as stored in the MySQL database
 props.saleStatus -- Returns the sale status of the game as stored in the MySQL database, where 1 = Sale & 0 = No Sale
@@ -13,9 +16,106 @@ props.saleStatus -- Returns the sale status of the game as stored in the MySQL d
 */
 
 function FavouritedGameListItem(props) {
+  const [isUnfavourited, setIsUnfavourited] = useState(false);
+
+  // Called after "Remove from Favourites" clicked
+  const handleUnfavourite = () => {
+    setIsUnfavourited(true);
+  };
+
+  const handleRedirect = () => {
+    window.location.href = `https://store.steampowered.com/app/${props._gameId}`;
+  };
+
+  // Removing the game from the associative table between user and game
+  useEffect(() => {
+    if (isUnfavourited) {
+      // Data to send for deletion
+      const payload = {
+        _userId: window.localStorage.getItem("userId"),
+        _gameId: props._gameId,
+      };
+
+      // Actual API call
+      try {
+        fetch(`http://localhost/SteamService/api/steam/remove-favourite-game`, {
+          method: "DELETE",
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).then(async (response) => {
+          console.log(
+            `>Game Card ${props._gameId}: HTTP Status Code - ${response.status}`
+          );
+          if (!response.ok) {
+            console.log(response);
+            throw new Error(
+              `>Game Card ${props._gameId}: Error! Current Status - ${response.status}`
+            );
+          } else if (response.ok) {
+            alert(`Notice: Removed ${props.title} from Favourites.`);
+            setIsUnfavourited(false);
+            window.location.reload();
+          }
+        });
+      } catch (err) {
+        console.log(err);
+        setIsUnfavourited(false);
+      }
+    }
+  }, [isUnfavourited]);
+
   return (
-    <li>
-      <div>This is a favourited list item.</div>
+    <li style={{ display: "flex", marginTop: "2em" }}>
+      <div
+        className={modifiers.gamesListItem}
+        onClick={handleRedirect}
+        style={{ cursor: "pointer" }}
+      >
+        <span className={modifiers.gamesListAttributes}>
+          <span className={modifiers.gameListTitles}>Title:</span> {props.title}
+        </span>
+        ||
+        <span className={modifiers.gamesListAttributes}>
+          <span className={modifiers.gameListTitles}>Genre:</span> {props.genre}
+        </span>
+        ||
+        <span className={modifiers.gamesListAttributes}>
+          <span className={modifiers.gameListTitles}>Publisher:</span>{" "}
+          {props.publisher}
+        </span>
+        ||
+        <span className={modifiers.gamesListAttributes}>
+          <span className={modifiers.gameListTitles}>Release Date:</span>{" "}
+          {props.releaseDate}
+        </span>
+        ||
+        <span className={modifiers.gamesListAttributes}>
+          <span className={modifiers.gameListTitles}>Price:</span>{" "}
+          {props.localPrice}
+        </span>
+        ||
+        <span className={modifiers.gamesListAttributes}>
+          <span className={modifiers.gameListTitles}>Sale:</span>{" "}
+          {props.saleStatus === 0 ? "No" : "Yes"}
+        </span>
+      </div>
+      <button
+        className="btn btn-outline-secondary"
+        id={modifiers.btnBan}
+        style={{
+          borderRadius: "1em",
+          border: "3px solid black",
+          marginLeft: "1em",
+          paddingInlineStart: "1em",
+          paddingInlineEnd: "1em",
+        }}
+        type="button"
+        onClick={handleUnfavourite}
+      >
+        Unfavourite
+      </button>
     </li>
   );
 }

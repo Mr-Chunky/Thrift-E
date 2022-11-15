@@ -156,6 +156,29 @@
   margin-right: 15em;
 }
 
+.gamesListItem {
+  background-color: white;
+  border-radius: 1em;
+  box-shadow: 0.1em 0.05em black;
+  padding: 0.8em;
+  border: 2px solid black;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: bold;
+}
+
+.gamesListAttributes {
+  margin-left: 0.7em;
+  margin-right: 0.7em;
+}
+
+.gameListTitles {
+  text-shadow: 0px 0px 0px black;
+  color: #b96b0b;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 700;
+  font-size: larger;
+}
+
 #statsNavButton {
   margin-left: 50px;
   margin-right: 50px;
