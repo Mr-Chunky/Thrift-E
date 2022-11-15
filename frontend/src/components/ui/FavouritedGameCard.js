@@ -15,7 +15,32 @@ props.saleStatus -- Returns the sale status of the game as stored in the MySQL d
 */
 
 function FavouritedGameCard(props) {
+  let formattedCurrency;
   const [isUnfavourited, setIsUnfavourited] = useState(false);
+  const locale = window.localStorage.getItem("locale");
+
+  switch (locale) {
+    case "0":
+      formattedCurrency = `R ${props.localPrice.toFixed(2)}`;
+      break;
+    case "1":
+      formattedCurrency = `ZWL ${(props.localPrice * 18.715268).toFixed(2)}`;
+      break;
+    case "2":
+      formattedCurrency = `NZ$ ${(props.localPrice * 0.094).toFixed(2)}`;
+      break;
+    case "3":
+      formattedCurrency = `$${(props.localPrice * 0.058).toFixed(2)}`;
+      break;
+    case "4":
+      formattedCurrency = `£ ${(props.localPrice * 0.049).toFixed(2)}`;
+      break;
+    case "5":
+      formattedCurrency = `AU$ ${(props.localPrice * 0.085).toFixed(2)}`;
+      break;
+    default:
+      break;
+  }
 
   // Called after "Remove from Favourites" clicked
   const handleUnfavourite = () => {
@@ -81,7 +106,7 @@ function FavouritedGameCard(props) {
           <h3>{props.title}</h3>
           <h6>{props.publisher}</h6>
           <div className={modifiers.gameAttributes}>
-            <span>R {props.localPrice.toFixed(2)}</span>
+            <span>{formattedCurrency}</span>
             <span
               style={{
                 marginLeft: "auto",

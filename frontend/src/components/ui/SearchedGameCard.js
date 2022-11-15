@@ -27,13 +27,53 @@ props.price_overview -- An object containing details such as:
 */
 
 function SearchedGameCard(props) {
+  let formattedCurrency;
+  const [isSelected, setIsSelected] = useState(false);
+  const [isFavourited, setIsFavourited] = useState(false);
+  const locale = window.localStorage.getItem("locale");
   const userId = window.localStorage.getItem("userId");
   let saleStatus;
   props.price_overview.initial - props.price_overview.final > 0
     ? (saleStatus = 1)
     : (saleStatus = 0);
-  const [isSelected, setIsSelected] = useState(false);
-  const [isFavourited, setIsFavourited] = useState(false);
+
+  switch (locale) {
+    case "0":
+      formattedCurrency = `R ${(props.price_overview.final / 100).toFixed(2)}`;
+      break;
+    case "1":
+      formattedCurrency = `ZWL ${(
+        (props.price_overview.final / 100) *
+        18.715268
+      ).toFixed(2)}`;
+      break;
+    case "2":
+      formattedCurrency = `NZ$ ${(
+        (props.price_overview.final / 100) *
+        0.094
+      ).toFixed(2)}`;
+      break;
+    case "3":
+      formattedCurrency = `$${(
+        (props.price_overview.final / 100) *
+        0.058
+      ).toFixed(2)}`;
+      break;
+    case "4":
+      formattedCurrency = `£ ${(
+        (props.price_overview.final / 100) *
+        0.049
+      ).toFixed(2)}`;
+      break;
+    case "5":
+      formattedCurrency = `AU$ ${(
+        (props.price_overview.final / 100) *
+        0.085
+      ).toFixed(2)}`;
+      break;
+    default:
+      break;
+  }
 
   const handleSelection = () => {
     if (!isSelected) {
@@ -104,7 +144,7 @@ function SearchedGameCard(props) {
             ))
           )}
           <div className={modifiers.gameAttributes}>
-            <span>{props.price_overview.final_formatted}</span>
+            <span>{formattedCurrency}</span>
             <span
               style={{
                 marginLeft: "auto",
