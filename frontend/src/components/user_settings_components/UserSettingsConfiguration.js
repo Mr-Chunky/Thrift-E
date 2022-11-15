@@ -1,50 +1,12 @@
-import { useState } from "react";
 import modifiers from "./UserSettings.module.css";
 
 function UserSettingsConfiguration(props) {
-  const [displayMode, setDisplayMode] = useState();
-  const [locale, setLocale] = useState();
-
-  async function submitUserSettings(event) {
-    event.preventDefault();
-    let userSettings;
-
-    if (displayMode === undefined || locale === undefined) {
-      alert("You must select an option for both fields!");
-    } else {
-      // Passes an object to the parent with various user settings
-      userSettings = {
-        displayMode: displayMode,
-        locale: locale,
-      };
-    }
-
-    props.onConfigureSettings(userSettings);
-  }
-
-  // Handle different display mode selections
-  function changeDisplayTypeHandler(event) {
-    setDisplayMode(event.target.value);
-    console.warn(`Display type changed to ${displayMode}!`);
-  }
-
-  // Handle new dropdown item selection
-  function handleLocaleSelection(event) {
-    event.preventDefault();
-
-    document.getElementById("localeDropdown").innerHTML =
-      event.target.innerHTML;
-
-    setLocale(event.target.value);
-    console.warn(`Locale changed to ${locale}!`);
-  }
-
   return (
     <div className="center-content-holder">
       <div className={modifiers.userSettingsHolder}>
         <form
           className={modifiers.userSettingsInputHolder}
-          onSubmit={submitUserSettings}
+          onSubmit={props.onSubmitUserSettings}
         >
           <div className={modifiers.allFormElementsHolder}>
             <div className={modifiers.formCheckHolder}>
@@ -56,7 +18,7 @@ function UserSettingsConfiguration(props) {
                   id="radioTiles"
                   name="displayType"
                   value="0"
-                  onChange={changeDisplayTypeHandler}
+                  onChange={props.onChangeDisplayTypeHandler}
                 ></input>
                 <label className="form-check-label" htmlFor="radioTiles">
                   Tiles
@@ -69,7 +31,7 @@ function UserSettingsConfiguration(props) {
                   id="radioList"
                   name="displayType"
                   value="1"
-                  onChange={changeDisplayTypeHandler}
+                  onChange={props.onChangeDisplayTypeHandler}
                 ></input>
                 <label className="form-check-label" htmlFor="radioList">
                   List
@@ -90,42 +52,42 @@ function UserSettingsConfiguration(props) {
                 <li
                   className="dropdown-item"
                   value="0"
-                  onClick={handleLocaleSelection}
+                  onClick={props.onHandleLocaleSelection}
                 >
                   ZA
                 </li>
                 <li
                   className="dropdown-item"
                   value="1"
-                  onClick={handleLocaleSelection}
+                  onClick={props.onHandleLocaleSelection}
                 >
                   ZW
                 </li>
                 <li
                   className="dropdown-item"
                   value="2"
-                  onClick={handleLocaleSelection}
+                  onClick={props.onHandleLocaleSelection}
                 >
                   NZ
                 </li>
                 <li
                   className="dropdown-item"
                   value="3"
-                  onClick={handleLocaleSelection}
+                  onClick={props.onHandleLocaleSelection}
                 >
                   US
                 </li>
                 <li
                   className="dropdown-item"
                   value="4"
-                  onClick={handleLocaleSelection}
+                  onClick={props.onHandleLocaleSelection}
                 >
                   UK
                 </li>
                 <li
                   className="dropdown-item"
                   value="5"
-                  onClick={handleLocaleSelection}
+                  onClick={props.onHandleLocaleSelection}
                 >
                   AU
                 </li>

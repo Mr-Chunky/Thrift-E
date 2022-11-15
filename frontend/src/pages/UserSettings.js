@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function UserSettingsPage() {
+  let payload;
   const navigate = useNavigate();
   const [userId, setUserId] = useState();
   const [banStatus, setBanStatus] = useState();
@@ -19,23 +20,43 @@ function UserSettingsPage() {
     console.log(`User Settings Page> useEffect() ran!`);
   }, []);
 
-  // Get data from child component and send to DB
-  const handleRetrieveData = (props) => {
-    setDisplayMode(props.displayMode);
-    setLocale(props.locale);
+  // Handle different display mode selections
+  function changeDisplayTypeHandler(event) {
+    setDisplayMode(event.target.value);
+    console.warn(`Display type changed to ${event.target.value}!`);
+  }
 
+  // Handle new dropdown item selection
+  function handleLocaleSelection(event) {
+    event.preventDefault();
+
+    document.getElementById("localeDropdown").innerHTML =
+      event.target.innerHTML;
+
+    setLocale(event.target.value);
+    console.warn(`Locale changed to ${event.target.innerHTML}!`);
+  }
+
+  function submitUserSettings(event) {
+    event.preventDefault();
+
+    if (displayMode === undefined || locale === undefined) {
+      alert("You must select an option for both fields!");
+    } else {
+      // Passes an object to the parent with various user settings
+      payload = {
+        _userId: userId,
+        displayMode: displayMode,
+        locale: locale,
+      };
+      handleRetrieveData();
+    }
+  }
+
+  // Get data from child component and send to DB
+  const handleRetrieveData = () => {
     console.log(
       `Currently saved settings:\nDisplay Mode: ${displayMode}\nLocale: ${locale}`
-    );
-
-    const payload = {
-      _userId: userId,
-      displayMode: displayMode,
-      locale: locale,
-    };
-
-    console.log(
-      `Payload Properties: Display - ${payload.displayMode} | Locale - ${payload.locale}`
     );
 
     // Send user settings in to the DB
@@ -71,7 +92,11 @@ function UserSettingsPage() {
       <UserInputCard>
         {userId && banStatus === 0 ? <UserSettingsHeader /> : null}
         {userId && banStatus === 0 ? (
-          <UserSettingsConfiguration onConfigureSettings={handleRetrieveData} />
+          <UserSettingsConfiguration
+            onChangeDisplayTypeHandler={changeDisplayTypeHandler}
+            onHandleLocaleSelection={handleLocaleSelection}
+            onSubmitUserSettings={submitUserSettings}
+          />
         ) : (
           "ERROR: User is not properly authenticated!"
         )}
