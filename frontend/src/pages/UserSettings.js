@@ -75,6 +75,7 @@ function UserSettingsPage() {
           console.log(await response.json());
           window.localStorage.setItem("displayMode", payload.displayMode);
           window.localStorage.setItem("locale", payload.locale);
+          handleGoBack();
         }
       });
     } catch (err) {
