@@ -20,6 +20,8 @@ function FavouritedGameCard(props) {
   // Called after "Remove from Favourites" clicked
   const handleUnfavourite = () => {
     setIsUnfavourited(true);
+
+    setTimeout(() => props.handleUnfavourite(), 1000);
   };
 
   const handleRedirect = () => {

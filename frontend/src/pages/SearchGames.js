@@ -64,6 +64,11 @@ function SearchGamesPage() {
   // Array of objects from custom backend to display in the favourites list
   const [favouritedGameData, setFavouritedGameData] = useState([]);
 
+  // Called only if a game is unfavourited, in order to refresh the array of games
+  const handleUnfavourite = () => {
+    setFavouritedGameData([]);
+  };
+
   const searchGameHandler = (userSearchTerm) => {
     setSearchTerm(userSearchTerm);
 
@@ -190,6 +195,7 @@ function SearchGamesPage() {
         <SearchGamesFavouritedGames
           games={favouritedGameData}
           displayInfo={displayInfo}
+          handleUnfavourite={handleUnfavourite}
         />
       ) : null}
     </div>

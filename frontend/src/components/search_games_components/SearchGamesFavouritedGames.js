@@ -4,6 +4,10 @@ import FavouritedGameListItem from "../ui/FavouritedGameListItem";
 import GeneralUICard from "../ui/GeneralUICard";
 
 function SearchGamesFavouritedGames(props) {
+  const handleUnfavourite = () => {
+    props.handleUnfavourite();
+  };
+
   return (
     <GeneralUICard>
       <section className={modifiers.gameListHolder}>
@@ -26,6 +30,7 @@ function SearchGamesFavouritedGames(props) {
                 localPrice={game.localPrice}
                 publisher={game.publisher}
                 saleStatus={game.saleStatus}
+                handleUnfavourite={handleUnfavourite}
               />
             ))}
           </ul>
@@ -46,6 +51,7 @@ function SearchGamesFavouritedGames(props) {
                 localPrice={game.localPrice}
                 publisher={game.publisher}
                 saleStatus={game.saleStatus}
+                handleUnfavourite={handleUnfavourite}
               />
             ))}
           </ul>
