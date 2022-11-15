@@ -92,7 +92,7 @@ function FavouritedGameListItem(props) {
         </span>
         ||
         <span className={modifiers.gamesListAttributes}>
-          <span className={modifiers.gameListTitles}>Price:</span>{" "}
+          <span className={modifiers.gameListTitles}>Price:</span> R{" "}
           {props.localPrice}
         </span>
         ||

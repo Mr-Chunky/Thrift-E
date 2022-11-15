@@ -79,7 +79,7 @@ function FavouritedGameCard(props) {
           <h3>{props.title}</h3>
           <h6>{props.publisher}</h6>
           <div className={modifiers.gameAttributes}>
-            <span>R {(props.localPrice / 100).toFixed(2)}</span>
+            <span>R {props.localPrice.toFixed(2)}</span>
             <span
               style={{
                 marginLeft: "auto",
