@@ -54,6 +54,11 @@ function SearchGamesPage() {
   const [locale, setLocale] = useState();
   const [searchTerm, setSearchTerm] = useState();
 
+  let displayInfo = {
+    displayMode: displayMode,
+    locale: locale,
+  };
+
   // JSON objects from Steam to be passed to child component for dynamic content insertion
   const [gameData, setGameData] = useState([]);
   // Array of objects from custom backend to display in the favourites list
@@ -174,17 +179,18 @@ function SearchGamesPage() {
 
       {userId &&
       banStatus === 0 &&
-      displayMode === 0 &&
       Array.isArray(gameData) &&
       gameData.length ? (
-        <SearchGamesList games={gameData} />
+        <SearchGamesList games={gameData} displayInfo={displayInfo} />
       ) : null}
       {userId &&
       banStatus === 0 &&
-      displayMode === 0 &&
       Array.isArray(favouritedGameData) &&
       favouritedGameData.length ? (
-        <SearchGamesFavouritedGames games={favouritedGameData} />
+        <SearchGamesFavouritedGames
+          games={favouritedGameData}
+          displayInfo={displayInfo}
+        />
       ) : null}
     </div>
   );

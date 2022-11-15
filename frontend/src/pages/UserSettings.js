@@ -15,9 +15,11 @@ function UserSettingsPage() {
   useEffect(() => {
     setUserId(JSON.parse(window.localStorage.getItem("userId")));
     setBanStatus(JSON.parse(window.localStorage.getItem("banStatus")));
+
+    console.log(`User Settings Page> useEffect() ran!`);
   }, []);
 
-  // Get the data from child component
+  // Get data from child component and send to DB
   const handleRetrieveData = (props) => {
     setDisplayMode(props.displayMode);
     setLocale(props.locale);
@@ -25,48 +27,44 @@ function UserSettingsPage() {
     console.log(
       `Currently saved settings:\nDisplay Mode: ${displayMode}\nLocale: ${locale}`
     );
+
+    const payload = {
+      _userId: userId,
+      displayMode: displayMode,
+      locale: locale,
+    };
+
+    console.log(
+      `Payload Properties: Display - ${payload.displayMode} | Locale - ${payload.locale}`
+    );
+
+    // Send user settings in to the DB
+    try {
+      fetch("http://localhost/LoginService/api/users/edit-user-settings", {
+        method: "PUT",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(async (response) => {
+        if (!response.ok) {
+          console.warn(await response.json());
+          throw new Error(`Error! Current Status: ${response.status}`);
+        } else if (response.ok) {
+          console.log(await response.json());
+          window.localStorage.setItem("displayMode", payload.displayMode);
+          window.localStorage.setItem("locale", payload.locale);
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // Handle the "Go Back" button
   const handleGoBack = () => {
     navigate("/search", { replace: true });
   };
-
-  // Perform the custom backend API call
-  useEffect(() => {
-    if (displayMode && locale) {
-      const payload = {
-        _userId: userId,
-        displayMode: displayMode,
-        locale: locale,
-      };
-
-      console.log(
-        `Payload Properties: Display - ${payload.displayMode} | Locale - ${payload.locale}`
-      );
-
-      try {
-        fetch("http://localhost/LoginService/api/users/edit-user-settings", {
-          method: "PUT",
-          body: JSON.stringify(payload),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }).then(async (response) => {
-          if (!response.ok) {
-            console.warn(await response.json());
-            throw new Error(`Error! Current Status: ${response.status}`);
-          } else if (response.ok) {
-            console.log(await response.json());
-            window.localStorage.setItem("displayMode", payload.displayMode);
-            window.localStorage.setItem("locale", payload.locale);
-          }
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  }, [displayMode, locale]);
 
   return (
     <div>
