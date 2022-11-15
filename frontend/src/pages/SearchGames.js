@@ -50,6 +50,8 @@ function SearchGamesPage() {
   const [userId, setUserId] = useState();
   const [banStatus, setBanStatus] = useState();
   const [userType, setUserType] = useState();
+  const [displayMode, setDisplayMode] = useState();
+  const [locale, setLocale] = useState();
   const [searchTerm, setSearchTerm] = useState();
 
   // JSON objects from Steam to be passed to child component for dynamic content insertion
@@ -77,6 +79,8 @@ function SearchGamesPage() {
     setUserId(JSON.parse(window.localStorage.getItem("userId")));
     setBanStatus(JSON.parse(window.localStorage.getItem("banStatus")));
     setUserType(JSON.parse(window.localStorage.getItem("userType")));
+    setDisplayMode(JSON.parse(window.localStorage.getItem("displayMode")));
+    setLocale(JSON.parse(window.localStorage.getItem("locale")));
     if (validGameId && searchTerm) {
       try {
         fetch(
@@ -170,12 +174,14 @@ function SearchGamesPage() {
 
       {userId &&
       banStatus === 0 &&
+      displayMode === 0 &&
       Array.isArray(gameData) &&
       gameData.length ? (
         <SearchGamesList games={gameData} />
       ) : null}
       {userId &&
       banStatus === 0 &&
+      displayMode === 0 &&
       Array.isArray(favouritedGameData) &&
       favouritedGameData.length ? (
         <SearchGamesFavouritedGames games={favouritedGameData} />

@@ -23,6 +23,12 @@ props.price_overview -- An object containing details such as:
 ------------------------------------------------------------------
 */
 
-function SearchedGameListItem(props) {}
+function SearchedGameListItem(props) {
+  return (
+    <li>
+      <div>This is a searched list item.</div>
+    </li>
+  );
+}
 
 export default SearchedGameListItem;

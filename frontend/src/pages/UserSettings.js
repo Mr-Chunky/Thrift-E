@@ -58,6 +58,8 @@ function UserSettingsPage() {
             throw new Error(`Error! Current Status: ${response.status}`);
           } else if (response.ok) {
             console.log(await response.json());
+            window.localStorage.setItem("displayMode", payload.displayMode);
+            window.localStorage.setItem("locale", payload.locale);
           }
         });
       } catch (err) {

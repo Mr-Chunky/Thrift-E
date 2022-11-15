@@ -12,6 +12,12 @@ props.saleStatus -- Returns the sale status of the game as stored in the MySQL d
 ------------------------------------------------------------------
 */
 
-function FavouritedGameListItem(props) {}
+function FavouritedGameListItem(props) {
+  return (
+    <li>
+      <div>This is a favourited list item.</div>
+    </li>
+  );
+}
 
 export default FavouritedGameListItem;

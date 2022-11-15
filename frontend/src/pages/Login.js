@@ -39,11 +39,11 @@ function LoginPage() {
               )}`
             );
             currentUserContext.getCurrentUser(userData._userId);
-            currentUserContext.getCurrentUserType(userData.userType);
-            currentUserContext.getCurrentUserBanStatus(userData.banStatus);
             window.localStorage.setItem("userId", userData._userId);
             window.localStorage.setItem("userType", userData.userType);
             window.localStorage.setItem("banStatus", userData.banStatus);
+            window.localStorage.setItem("displayMode", userData.displayMode);
+            window.localStorage.setItem("locale", userData.locale);
             navigate("/search", { replace: true });
           }
         });
