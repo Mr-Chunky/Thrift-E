@@ -41,7 +41,7 @@ function AdvancedStatisticsView(props) {
             </td>
             <td>
               {props.lowestPriceGame
-                ? `R ${props.lowestPriceGame.lowestPrice}`
+                ? `${props.lowestPriceGame.lowestPrice}`
                 : "None"}
             </td>
             <td>Everyone</td>

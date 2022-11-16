@@ -10,6 +10,7 @@ function SimpleStatisticsPage() {
   const [userId, setUserId] = useState();
   const [banStatus, setBanStatus] = useState();
   const [userType, setUserType] = useState();
+  const locale = window.localStorage.getItem("locale");
 
   // Get most favourited game from backend API
   useEffect(() => {
@@ -62,12 +63,53 @@ function SimpleStatisticsPage() {
             let gameInfoObject = await response.json();
             let finalInfo = JSON.stringify(gameInfoObject, undefined, 2);
             let finalInfoObject = JSON.parse(finalInfo);
+            let formattedCurrency;
+
+            switch (locale) {
+              case "0":
+                formattedCurrency = `R ${finalInfoObject.lowestPrice.toFixed(
+                  2
+                )}`;
+                break;
+              case "1":
+                formattedCurrency = `ZWL ${(
+                  finalInfoObject.lowestPrice * 18.715268
+                ).toFixed(2)}`;
+                break;
+              case "2":
+                formattedCurrency = `NZ$ ${(
+                  finalInfoObject.lowestPrice * 0.094
+                ).toFixed(2)}`;
+                break;
+              case "3":
+                formattedCurrency = `$${(
+                  finalInfoObject.lowestPrice * 0.058
+                ).toFixed(2)}`;
+                break;
+              case "4":
+                formattedCurrency = `£ ${(
+                  finalInfoObject.lowestPrice * 0.049
+                ).toFixed(2)}`;
+                break;
+              case "5":
+                formattedCurrency = `AU$ ${(
+                  finalInfoObject.lowestPrice * 0.085
+                ).toFixed(2)}`;
+                break;
+              default:
+                break;
+            }
+
+            const finalPayload = {
+              title: finalInfoObject.title,
+              lowestPrice: formattedCurrency,
+            };
 
             console.warn(
               `>Simple Stats Page: Lowest-Price Game Info Received - \n------------\n${finalInfo}`
             );
 
-            setLowestPriceGame(finalInfoObject);
+            setLowestPriceGame(finalPayload);
           }
         }
       );

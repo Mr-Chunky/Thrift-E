@@ -25,7 +25,7 @@ function SimpleStatisticsView(props) {
             <h4 className={modifiers.statsHeadings}>Lowest Sale Price</h4>
             <span className={modifiers.statsText}>
               {props.lowestPriceGame
-                ? `R ${props.lowestPriceGame.lowestPrice}`
+                ? `${props.lowestPriceGame.lowestPrice}`
                 : "None"}
             </span>
           </div>
