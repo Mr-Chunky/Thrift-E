@@ -178,6 +178,32 @@
   font-weight: 700;
   font-size: large;
 }
+.errorScreen {
+  margin: 0 auto;
+}
+
+.errorTextHolder {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-family: "Times New Roman", Times, serif;
+  text-shadow: 2px 1px 2px black;
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: larger;
+}
+
+.errorButtonHolder {
+  display: flex;
+  justify-content: center;
+}
+
+#errorButton {
+  background-color: #b96b0b;
+  color: black;
+  font-family: "Times New Roman", Times, serif;
+  border: 3px solid black;
+}
 
 #statsNavButton {
   margin-left: 50px;

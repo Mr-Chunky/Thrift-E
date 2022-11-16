@@ -1,6 +1,7 @@
 import AdvancedStatisticsHeader from "../components/statistics_components/AdvancedStatisticsHeader";
 import AdvancedStatisticsView from "../components/statistics_components/AdvancedStatisticsView";
 import GeneralUICard from "../components/ui/GeneralUICard";
+import ErrorScreen from "../components/ui/ErrorScreen";
 import modifiers from "../components/statistics_components/AdvancedStatistics.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -152,35 +153,39 @@ function AdvancedStatistics() {
     }
   }, []);
 
-  return (
-    <div>
-      {userId && <AdvancedStatisticsHeader />}
+  if (userId) {
+    return (
+      <div>
+        {userId && <AdvancedStatisticsHeader />}
 
-      <GeneralUICard>
+        <GeneralUICard>
+          {userId ? (
+            <AdvancedStatisticsView
+              mostFavouritedGame={mostFavouritedGame}
+              lowestPriceGame={lowestPriceGame}
+              mostFavouritedGenre={mostFavouritedGenre}
+            />
+          ) : (
+            "ERROR: User is not properly authenticated!"
+          )}
+        </GeneralUICard>
         {userId ? (
-          <AdvancedStatisticsView
-            mostFavouritedGame={mostFavouritedGame}
-            lowestPriceGame={lowestPriceGame}
-            mostFavouritedGenre={mostFavouritedGenre}
-          />
-        ) : (
-          "ERROR: User is not properly authenticated!"
-        )}
-      </GeneralUICard>
-      {userId ? (
-        <div className="center-button-bar-holder">
-          <button
-            className="btn btn-outline-secondary"
-            type="button"
-            id={modifiers.btnGoBack}
-            onClick={handleGoBack}
-          >
-            Go Back
-          </button>
-        </div>
-      ) : null}
-    </div>
-  );
+          <div className="center-button-bar-holder">
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              id={modifiers.btnGoBack}
+              onClick={handleGoBack}
+            >
+              Go Back
+            </button>
+          </div>
+        ) : null}
+      </div>
+    );
+  } else {
+    return <ErrorScreen />;
+  }
 }
 
 export default AdvancedStatistics;

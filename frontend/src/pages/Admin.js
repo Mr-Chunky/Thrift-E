@@ -5,6 +5,7 @@ import AdminUsers from "../components/admin_components/AdminUsers";
 import modifiers from "../components/admin_components/Admin.module.css";
 import AdminBannedUsers from "../components/admin_components/AdminBannedUsers";
 import { useState, useEffect } from "react";
+import ErrorScreen from "../components/ui/ErrorScreen";
 
 function Admin() {
   const [users, setUsers] = useState([]);
@@ -100,44 +101,48 @@ function Admin() {
     }
   }, []);
 
-  return (
-    <div>
-      {userId && banStatus === 0 && userType === 1 && (
-        <NavBar userId={userId} banStatus={banStatus} userType={userType} />
-      )}
-      {userId && banStatus === 0 && userType === 1 && <AdminHeader />}
-      {userId && banStatus === 0 && userType === 1 ? (
-        <h3 className={modifiers.sectionTitle}>Users</h3>
-      ) : null}
-      <GeneralUICard>
-        <div style={{ margin: "auto" }}>
-          {userId &&
-          banStatus === 0 &&
-          userType === 1 &&
-          Array.isArray(users) &&
-          users.length ? (
-            <AdminUsers users={users} />
-          ) : null}
-        </div>
-      </GeneralUICard>
-      {userId && banStatus === 0 && userType === 1 && (
-        <h3 className={modifiers.sectionTitle} style={{ marginTop: "2em" }}>
-          Banned Users
-        </h3>
-      )}
-      <GeneralUICard>
-        <div style={{ margin: "auto" }}>
-          {userId &&
-          banStatus === 0 &&
-          userType === 1 &&
-          Array.isArray(bannedUsers) &&
-          bannedUsers.length ? (
-            <AdminBannedUsers bannedUsers={bannedUsers} />
-          ) : null}
-        </div>
-      </GeneralUICard>
-    </div>
-  );
+  if (userId && banStatus === 0 && userType === 1) {
+    return (
+      <div>
+        {userId && banStatus === 0 && userType === 1 && (
+          <NavBar userId={userId} banStatus={banStatus} userType={userType} />
+        )}
+        {userId && banStatus === 0 && userType === 1 && <AdminHeader />}
+        {userId && banStatus === 0 && userType === 1 ? (
+          <h3 className={modifiers.sectionTitle}>Users</h3>
+        ) : null}
+        <GeneralUICard>
+          <div style={{ margin: "auto" }}>
+            {userId &&
+            banStatus === 0 &&
+            userType === 1 &&
+            Array.isArray(users) &&
+            users.length ? (
+              <AdminUsers users={users} />
+            ) : null}
+          </div>
+        </GeneralUICard>
+        {userId && banStatus === 0 && userType === 1 && (
+          <h3 className={modifiers.sectionTitle} style={{ marginTop: "2em" }}>
+            Banned Users
+          </h3>
+        )}
+        <GeneralUICard>
+          <div style={{ margin: "auto" }}>
+            {userId &&
+            banStatus === 0 &&
+            userType === 1 &&
+            Array.isArray(bannedUsers) &&
+            bannedUsers.length ? (
+              <AdminBannedUsers bannedUsers={bannedUsers} />
+            ) : null}
+          </div>
+        </GeneralUICard>
+      </div>
+    );
+  } else {
+    return <ErrorScreen />;
+  }
 }
 
 export default Admin;

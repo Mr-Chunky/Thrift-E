@@ -1,6 +1,7 @@
 import UserInputCard from "../components/ui/UserInputCard";
 import UserSettingsConfiguration from "../components/user_settings_components/UserSettingsConfiguration";
 import UserSettingsHeader from "../components/user_settings_components/UserSettingsHeader";
+import ErrorScreen from "../components/ui/ErrorScreen";
 import modifiers from "../components/user_settings_components/UserSettings.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -88,34 +89,38 @@ function UserSettingsPage() {
     navigate("/search", { replace: true });
   };
 
-  return (
-    <div>
-      <UserInputCard>
-        {userId && banStatus === 0 ? <UserSettingsHeader /> : null}
+  if (userId && banStatus === 0) {
+    return (
+      <div>
+        <UserInputCard>
+          {userId && banStatus === 0 ? <UserSettingsHeader /> : null}
+          {userId && banStatus === 0 ? (
+            <UserSettingsConfiguration
+              onChangeDisplayTypeHandler={changeDisplayTypeHandler}
+              onHandleLocaleSelection={handleLocaleSelection}
+              onSubmitUserSettings={submitUserSettings}
+            />
+          ) : (
+            "ERROR: User is not properly authenticated!"
+          )}
+        </UserInputCard>
         {userId && banStatus === 0 ? (
-          <UserSettingsConfiguration
-            onChangeDisplayTypeHandler={changeDisplayTypeHandler}
-            onHandleLocaleSelection={handleLocaleSelection}
-            onSubmitUserSettings={submitUserSettings}
-          />
-        ) : (
-          "ERROR: User is not properly authenticated!"
-        )}
-      </UserInputCard>
-      {userId && banStatus === 0 ? (
-        <div className="center-button-bar-holder">
-          <button
-            className="btn btn-outline-secondary"
-            type="button"
-            id={modifiers.btnGoBack}
-            onClick={handleGoBack}
-          >
-            Go Back
-          </button>
-        </div>
-      ) : null}
-    </div>
-  );
+          <div className="center-button-bar-holder">
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              id={modifiers.btnGoBack}
+              onClick={handleGoBack}
+            >
+              Go Back
+            </button>
+          </div>
+        ) : null}
+      </div>
+    );
+  } else {
+    return <ErrorScreen />;
+  }
 }
 
 export default UserSettingsPage;

@@ -1,6 +1,7 @@
 import NewsFeed from "../components/news_components/NewsFeed";
 import NewsHeader from "../components/news_components/NewsHeader";
 import GeneralUICard from "../components/ui/GeneralUICard";
+import ErrorScreen from "../components/ui/ErrorScreen";
 import NavBar from "../components/ui/NavBar";
 import modifiers from "../components/news_components/News.module.css";
 import { useState, useEffect } from "react";
@@ -69,39 +70,43 @@ function News() {
     }
   }, []);
 
-  return (
-    <div>
-      {userId && banStatus === 0 && (
-        <NavBar userId={userId} banStatus={banStatus} userType={userType} />
-      )}
-      {userId && banStatus === 0 && <NewsHeader />}
-      {userId && banStatus === 0 && userType === 1 ? (
-        <div className={modifiers.newsBulletinHolder}>
-          <button
-            id={modifiers.addNewsBulletin}
-            type="button"
-            onClick={handleAddBulletin}
-          >
-            ADD BULLETIN
-          </button>
-        </div>
-      ) : null}
-      <GeneralUICard>
-        {userId &&
-        banStatus === 0 &&
-        Array.isArray(newsFeed) &&
-        newsFeed.length ? (
-          <NewsFeed news={newsFeed} />
+  if (userId && banStatus === 0) {
+    return (
+      <div>
+        {userId && banStatus === 0 && (
+          <NavBar userId={userId} banStatus={banStatus} userType={userType} />
+        )}
+        {userId && banStatus === 0 && <NewsHeader />}
+        {userId && banStatus === 0 && userType === 1 ? (
+          <div className={modifiers.newsBulletinHolder}>
+            <button
+              id={modifiers.addNewsBulletin}
+              type="button"
+              onClick={handleAddBulletin}
+            >
+              ADD BULLETIN
+            </button>
+          </div>
         ) : null}
-      </GeneralUICard>
-      {isModalOpen ? (
-        <InputModal
-          handleDiscard={onHandleDiscard}
-          closeModal={setIsModalOpen}
-        />
-      ) : null}
-    </div>
-  );
+        <GeneralUICard>
+          {userId &&
+          banStatus === 0 &&
+          Array.isArray(newsFeed) &&
+          newsFeed.length ? (
+            <NewsFeed news={newsFeed} />
+          ) : null}
+        </GeneralUICard>
+        {isModalOpen ? (
+          <InputModal
+            handleDiscard={onHandleDiscard}
+            closeModal={setIsModalOpen}
+          />
+        ) : null}
+      </div>
+    );
+  } else {
+    return <ErrorScreen />;
+  }
 }
 
 export default News;

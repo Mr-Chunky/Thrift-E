@@ -1,6 +1,7 @@
 import SearchGamesList from "../components/search_games_components/SearchGamesList.js";
 import SearchGamesSearchBar from "../components/search_games_components/SearchGamesSearchBar.js";
 import SearchGamesFavouritedGames from "../components/search_games_components/SearchGamesFavouritedGames.js";
+import ErrorScreen from "../components/ui/ErrorScreen";
 import NavBar from "../components/ui/NavBar.js";
 import { useEffect, useState, useContext } from "react";
 import CurrentUserContext from "../storage/current-user-context.js";
@@ -171,35 +172,39 @@ function SearchGamesPage() {
     }
   }, [userId]);
 
-  return (
-    <div>
-      {userId && banStatus === 0 ? (
-        <NavBar userId={userId} banStatus={banStatus} userType={userType} />
-      ) : (
-        "ERROR: User is not properly authenticated!"
-      )}
-      {userId && banStatus === 0 && (
-        <SearchGamesSearchBar onSearchGame={searchGameHandler} />
-      )}
+  if (userId && banStatus === 0) {
+    return (
+      <div>
+        {userId && banStatus === 0 ? (
+          <NavBar userId={userId} banStatus={banStatus} userType={userType} />
+        ) : (
+          "ERROR: User is not properly authenticated!"
+        )}
+        {userId && banStatus === 0 && (
+          <SearchGamesSearchBar onSearchGame={searchGameHandler} />
+        )}
 
-      {userId &&
-      banStatus === 0 &&
-      Array.isArray(gameData) &&
-      gameData.length ? (
-        <SearchGamesList games={gameData} displayInfo={displayInfo} />
-      ) : null}
-      {userId &&
-      banStatus === 0 &&
-      Array.isArray(favouritedGameData) &&
-      favouritedGameData.length ? (
-        <SearchGamesFavouritedGames
-          games={favouritedGameData}
-          displayInfo={displayInfo}
-          handleUnfavourite={handleUnfavourite}
-        />
-      ) : null}
-    </div>
-  );
+        {userId &&
+        banStatus === 0 &&
+        Array.isArray(gameData) &&
+        gameData.length ? (
+          <SearchGamesList games={gameData} displayInfo={displayInfo} />
+        ) : null}
+        {userId &&
+        banStatus === 0 &&
+        Array.isArray(favouritedGameData) &&
+        favouritedGameData.length ? (
+          <SearchGamesFavouritedGames
+            games={favouritedGameData}
+            displayInfo={displayInfo}
+            handleUnfavourite={handleUnfavourite}
+          />
+        ) : null}
+      </div>
+    );
+  } else {
+    return <ErrorScreen />;
+  }
 }
 
 export default SearchGamesPage;

@@ -1,5 +1,6 @@
 import SimpleStatisticsHeader from "../components/statistics_components/SimpleStatisticsHeader";
 import SimpleStatisticsView from "../components/statistics_components/SimpleStatisticsView";
+import ErrorScreen from "../components/ui/ErrorScreen";
 import NavBar from "../components/ui/NavBar";
 import { useEffect, useState } from "react";
 
@@ -149,23 +150,27 @@ function SimpleStatisticsPage() {
     }
   }, []);
 
-  return (
-    <div>
-      {userId && banStatus === 0 && (
-        <NavBar userId={userId} banStatus={banStatus} userType={userType} />
-      )}
-      {userId && banStatus === 0 && <SimpleStatisticsHeader />}
-      {userId && banStatus === 0 ? (
-        <SimpleStatisticsView
-          mostFavouritedGame={mostFavouritedGame}
-          lowestPriceGame={lowestPriceGame}
-          mostFavouritedGenre={mostFavouritedGenre}
-        />
-      ) : (
-        "ERROR: User is not properly authenticated!"
-      )}
-    </div>
-  );
+  if (userId && banStatus === 0) {
+    return (
+      <div>
+        {userId && banStatus === 0 && (
+          <NavBar userId={userId} banStatus={banStatus} userType={userType} />
+        )}
+        {userId && banStatus === 0 && <SimpleStatisticsHeader />}
+        {userId && banStatus === 0 ? (
+          <SimpleStatisticsView
+            mostFavouritedGame={mostFavouritedGame}
+            lowestPriceGame={lowestPriceGame}
+            mostFavouritedGenre={mostFavouritedGenre}
+          />
+        ) : (
+          "ERROR: User is not properly authenticated!"
+        )}
+      </div>
+    );
+  } else {
+    return <ErrorScreen />;
+  }
 }
 
 export default SimpleStatisticsPage;
