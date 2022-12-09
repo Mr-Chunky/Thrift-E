@@ -27,7 +27,3 @@ Allows users to create a new account with Thrift-E, sending their details to the
 Allows users to search for games to display in an area below the bar.  The search runs through a GET endpoint in the backend, where an HttpClient requests information from Steam's publicly accessible store API.  After fetching the information (if it exists), the endpoint returns the results of the HttpClient's request as a formatted JSON object (JObject), and this is processed further in the frontend to display it in the cards below.
 
 ----------------
-
-### Search Games Screen With Result
-![thrift-e-search-screen](https://github.com/Mr-Chunky/Thrift-E/blob/main/images/Search%20Games%20Screen%20With%20Result.PNG)
-This is what is shown to the user after they search.
